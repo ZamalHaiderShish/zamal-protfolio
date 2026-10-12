@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <!--
 HOW TO USE
-EDIT: all content is in the script block marked "EDIT HERE" (projects, experience, skills, education, links). Hero/About prose is plain HTML.
+FILES: keep all of these together in the same folder (the repo root on GitHub Pages):
+  index.html (home), bio.html, goals.html, styles.css (shared look), site.js (shared behavior + your email, LinkedIn and resume links),
+  zamal-profile.jpg, Zamal-Haider-Shish-Resume.pdf
+LINKS: your email, LinkedIn URL and resume file name are set once, in the SITE block at the top of site.js. They update on every page.
+HOME CONTENT: projects, experience, skills and education are in the script block marked "EDIT HERE" near the bottom of this file. The hero text is plain HTML.
+BIO and GOAL STATEMENT: bio.html and goals.html are plain HTML. Edit their text directly in those files.
 RUN LOCALLY: open index.html, or run `npx serve .` in this folder.
 RISE 360 PROJECT: Rise > Share > copy public link > paste into that project's embedUrl.
 STORYLINE 360 PROJECT: Publish > Web, upload the output folder to a public S3 bucket, paste https://YOUR-BUCKET.s3.amazonaws.com/project/story.html into embedUrl.
 VIDEO: paste a YouTube or Vimeo link into embedUrl. Empty embedUrl shows "Interactive Project Preview Coming Soon".
 NEW PROJECT: copy any P({...}) entry, give it a unique slug. Cards, filters and case study pages update automatically.
-LEADING WITH EMOTIONAL INTELLIGENCE: this project is in PROJECTS with its category, description, tools, tags and embedUrl left empty on purpose (details not yet confirmed). Fill them in, then add it to the Goal Statement's skill evidence where it genuinely fits.
-GOAL STATEMENT: the #goals section is written by hand in the HTML (not generated from a data array) so edit its text directly there.
-RESUME: save your PDF as Zamal-Haider-Shish-Resume.pdf next to index.html (or change SITE.resume).
-PHOTO: keep zamal-profile.jpg in the same folder as index.html (the hero loads it by that relative name). To change the photo, replace that file.
+LEADING WITH EMOTIONAL INTELLIGENCE: this project is in PROJECTS with its category, description, tools, tags and embedUrl left empty on purpose (details not yet confirmed). Fill them in, then add it to the skill evidence in goals.html where it genuinely fits.
+RESUME: save your PDF as Zamal-Haider-Shish-Resume.pdf next to index.html (or change SITE.resume in site.js).
+PHOTO: keep zamal-profile.jpg in the same folder as index.html (the hero loads it by that relative name). The photo is used on this page only. To change it, replace that file.
 DEPLOY ON GITHUB PAGES: repo Settings > Pages > Deploy from a branch > main, / (root). File names are case-sensitive. Embed links must be https://.
-NAV WIDTH: the header is measured to fit all 9 nav items + the View Resume button on one line down to an ~1321px window; below that it switches to the hamburger menu. If you add more nav items or a longer brand name later, re-check this at ~1280-1360px.
-WATERMARKS: the faint leaf/flower/palm shapes are decorative only (class "wm", built from the hidden <svg><defs> sprite near the top of <body>). They are hidden on phone widths. Edit the --ac2 color variable to retint them, or delete a .wm element to remove one.
+NAV: the same 9-item menu is written by hand in all three pages (Home, Bio, Goal Statement, Experience, Projects, Skills & Tools, Education, Resume, Contact). If you add or rename an item, change it in index.html, bio.html and goals.html. The header is measured to fit all 9 items + the View Resume button on one line down to an ~1321px window; below that it switches to the hamburger menu. If you add more nav items or a longer brand name later, re-check this at ~1280-1360px.
+WATERMARKS: the faint leaf/flower/palm shapes are decorative only (class "wm", built from the hidden <svg><defs> sprite near the top of <body>, which is the same block in all three pages). They are hidden on phone widths. Edit the --ac2 color variable in styles.css to retint them, or delete a .wm element to remove one.
 DEPLOY ON VERCEL: push this folder to GitHub > vercel.com/new > import the repo > Framework "Other", no build command > Deploy.
 If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 -->
@@ -24,59 +28,12 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 <meta property="og:type" content="website"><meta property="og:title" content="Zamal Haider Shish | Instructional Designer & eLearning Developer">
 <meta property="og:description" content="Instructional design and eLearning portfolio: Storyline 360, Rise 360, interactive learning, corporate training, and learning technology.">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--ac:#1e3a5f;--ac2:#5f7a63;--wm-brown:#8a6f52;--wm-gold:#bd9a56;--soft:#eef2f8;--tx:#1e293b;--mu:#566173;--bd:#e2e6ec;--bg:#f6f7f9}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:76px}
-body{margin:0;font:16px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--tx);background:#fff}
-h1,h2,h3,p,ul,figure{margin:0}h1,h2,h3{line-height:1.15;letter-spacing:-.02em}ul{padding-left:20px}li{margin:4px 0}
-a{color:inherit}.w{max-width:1120px;margin:auto;padding:0 24px}.mu{color:var(--mu)}.sm{font-size:14px}
-section{padding:96px 0}.alt{background:var(--bg)}
-h2{font-size:clamp(28px,4vw,40px);margin-bottom:16px}h3{font-size:19px}.lead{color:var(--mu);max-width:640px;margin-bottom:40px}
-:focus-visible{outline:3px solid #3b6fb6;outline-offset:2px}
-.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;padding:8px 12px;z-index:99}
-.btn{display:inline-block;padding:12px 22px;border-radius:10px;border:1px solid var(--ac);background:var(--ac);color:#fff;font:600 15px Inter,sans-serif;text-decoration:none;cursor:pointer;transition:.2s;white-space:nowrap}
-.btn:hover{background:#142b48}.btn.o{background:#fff;color:var(--ac)}.btn.o:hover{background:var(--soft)}.btn:disabled{opacity:.55;cursor:not-allowed}
-.card{background:#fff;border:1px solid var(--bd);border-radius:14px;padding:28px}
-.g{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}.g>.card>h3{margin-bottom:10px}
-.chip{display:inline-block;padding:4px 12px;border:1px solid var(--bd);border-radius:99px;font-size:13px;background:#fff;margin:0 6px 8px 0}
-header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid transparent;transition:.2s}header.sc{border-color:var(--bd);box-shadow:0 2px 12px rgba(0,0,0,.05)}
-header .w{max-width:1360px}
-.nb{display:flex;align-items:center;gap:14px;height:68px}.brand{font-weight:700;text-decoration:none;margin-right:auto;flex:none;white-space:nowrap}
-#menu{display:flex;gap:2px}#menu a{padding:8px 9px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:500;color:var(--mu);white-space:nowrap}#menu a:hover,#menu a.on{color:var(--ac);background:var(--soft)}
-#mb{display:none;background:#fff;border:1px solid var(--bd);border-radius:8px;padding:8px 14px;font-size:18px;cursor:pointer}.hcta{flex:none}
-.hero{padding:72px 0 96px}.hg{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center}
-.hero h1{font-size:clamp(34px,5vw,56px);margin:12px 0 20px}.eb{color:var(--ac);font-weight:600}.hero .lead{margin-bottom:24px}
-.acts{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:16px}.tl{color:var(--ac);font-weight:600}
-.photo{aspect-ratio:4/5;border:1px solid var(--bd);border-radius:20px;background:var(--bg);overflow:hidden}.photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 20%}.photo.miss{border:2px dashed #b8c2d1;display:grid;place-items:center;color:var(--mu);font-weight:600}.photo.miss:after{content:"Professional Photo"}
-.bio{max-width:720px;margin-top:24px}.bio p{font-size:18px;line-height:1.75;margin:0 0 1.15em}.bio p:last-child{margin-bottom:0}.approach{padding-bottom:0}
-.ex{display:grid;gap:20px}.eh{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:4px}.org{font-weight:500;margin-bottom:12px}
-#fl{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}.fb{padding:8px 16px;border-radius:99px;border:1px solid var(--bd);background:#fff;font:500 14px Inter,sans-serif;cursor:pointer;transition:.15s}.fb[aria-pressed=true]{background:var(--ac);border-color:var(--ac);color:#fff}
-.g3{display:grid;gap:24px;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr))}
-.pc{display:flex;flex-direction:column;padding:0;overflow:hidden;animation:f .3s}.pc>*:not(.th){margin:0 24px}.th{aspect-ratio:16/9;background:var(--soft);display:grid;place-items:center;color:var(--mu);font-size:14px;margin-bottom:18px}.th img{width:100%;height:100%;object-fit:cover}
-.pc h3{margin:6px 24px 8px}.pc .tags{margin-top:14px}.pc .tools-line{margin-top:10px}.pc .acts{margin-bottom:24px;margin-top:auto;padding-top:16px}@keyframes f{from{opacity:0}}
-.tk{display:flex;align-items:center;gap:12px;padding:16px 20px;font-weight:500}.tk:before{content:"";width:10px;height:10px;border-radius:3px;background:var(--ac);flex:none}
-.tools{margin-top:56px}.tools h3{margin-bottom:16px;font-size:24px}
-label{display:block;font-weight:500;font-size:14px;margin-bottom:14px}input,textarea{display:block;width:100%;margin-top:6px;padding:12px;border:1px solid #b8c2d1;border-radius:10px;font:inherit}
-.cg{display:grid;grid-template-columns:1fr 1.2fr;gap:40px}
-footer{border-top:1px solid var(--bd);padding:40px 0;font-size:14px}.fw{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}footer nav a,footer .ln a{margin-right:16px;color:var(--mu)}
-#cs{position:fixed;inset:0;background:#fff;overflow:auto;z-index:60;display:none}#cs.on{display:block}.cw{max-width:860px;margin:auto;padding:24px 24px 80px}
-.cw h2{margin:20px 0 10px}.cw h3{margin:36px 0 10px;font-size:22px}.emb{position:relative;aspect-ratio:16/9;min-height:220px;border:1px solid var(--bd);border-radius:14px;overflow:hidden;background:#fff}.emb iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.ph{display:grid;place-items:center;text-align:center;background:var(--bg);padding:24px}.ph p{margin:6px 0 16px}.ar{margin-top:14px}.pn{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:56px}
-.rv{opacity:0;transition:opacity .6s}.rv.in{opacity:1}
-.has-wm{position:relative;overflow:hidden;isolation:isolate}.has-wm>.w{position:relative;z-index:1}
-.wm{position:absolute;color:var(--ac2);pointer-events:none;z-index:0;height:auto}
-.wm-hero{right:-18px;bottom:-26px;width:230px;opacity:.3}
-.wm-about{right:18px;top:50%;transform:translateY(-50%);width:170px;opacity:.38}
-.wm-resume{right:28px;bottom:-10px;width:150px;opacity:.36}
-.wm-footer{right:4px;bottom:-14px;width:96px;opacity:.3}
-.wm-goals{left:22px;bottom:-16px;width:148px;opacity:.34}
-.wm-contact{left:20px;bottom:10px;width:124px;opacity:.34}
-@media(max-width:1320px){#mb{display:block}#menu{display:none;position:absolute;top:68px;left:0;right:0;background:#fff;flex-direction:column;padding:12px 24px;border-bottom:1px solid var(--bd)}#menu.open{display:flex}.hcta{display:none}}
-@media(max-width:900px){.hg,.cg{grid-template-columns:1fr}.photo{max-width:320px}section{padding:64px 0}.wm{display:none}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}.rv{opacity:1}}
-</style></head>
+<link rel="stylesheet" href="styles.css">
+<script>/* old bookmarks: index.html#about and #goals now live on their own pages */if(location.hash==="#about")location.replace("bio.html");else if(location.hash==="#goals")location.replace("goals.html")</script>
+<script src="site.js"></script>
+</head>
 <body>
-<a class="skip" href="#home">Skip to content</a>
+<a class="skip" href="#main">Skip to content</a>
 <svg aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
 <defs>
 <path id="frond" d="M0,0 C-7,-22 -7,-46 0,-64 C7,-46 7,-22 0,0 Z"/>
@@ -120,9 +77,9 @@ footer{border-top:1px solid var(--bd);padding:40px 0;font-size:14px}.fw{display:
 </defs>
 </svg>
 <header id="nav"><div class="w nb"><a class="brand" href="#home">Zamal Haider Shish</a>
-<nav id="menu" aria-label="Main"></nav><a class="btn hcta" href="#resume">View Resume</a>
+<nav id="menu" aria-label="Main"><a href="#home">Home</a><a href="bio.html">Bio</a><a href="goals.html">Goal Statement</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills &amp; Tools</a><a href="#education">Education</a><a href="#resume">Resume</a><a href="#contact">Contact</a></nav><a class="btn hcta" href="#resume">View Resume</a>
 <button id="mb" aria-label="Open menu" aria-expanded="false" aria-controls="menu">&#9776;</button></div></header>
-<main>
+<main id="main">
 <section id="home" class="hero has-wm"><svg class="wm wm-hero" viewBox="0 0 120 160" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-palm"/></svg><div class="w hg"><div>
 <p class="eb">Instructional Designer &amp; eLearning Developer</p>
 <h1>Designing Meaningful Learning Experiences Through Technology</h1>
@@ -131,60 +88,10 @@ footer{border-top:1px solid var(--bd);padding:40px 0;font-size:14px}.fw{display:
 <p style="margin-top:28px" id="cred"></p></div>
 <div class="photo"><img src="zamal-profile.jpg" alt="Zamal Haider Shish" width="620" height="775" fetchpriority="high" decoding="async" onerror="this.parentNode.classList.add('miss');this.remove()"></div></div></section>
 
-<section id="about" class="alt has-wm"><svg class="wm wm-about" viewBox="0 0 100 130" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-leaf"/></svg><div class="w"><h2>About Me</h2>
-<div class="bio">
-<p>Zamal Haider Shish is an aspiring instructional designer and e-learning developer with professional experience in ERP implementation, software training, and technology based learning.</p>
-<p>He began his professional career in 2018 and later moved into ERP implementation, where he worked with clients and trained end-users on complex software processes in real workplace environments.</p>
-<p>Zamal is completing an MS in Instructional Design and Technology at the University of Tampa, and holds a bachelor's in Software Engineering with Multimedia from Limkokwing University in Malaysia. His interests include e-learning development, Articulate Rise and Storyline, multimedia learning, and AI in education.</p>
-<p>He has worked on ERP implementation projects and more recently completed an instructional design internship where he redesigned the retail management course using Articulate Rise and created interactive learning experiences. Zamal is currently developing instructional design and e-learning projects that combine technology and learner-centered design. He lives in Plant City, Florida.</p></div></div></section>
 
-<section class="approach"><div class="w"><h2>How I Approach Learning Design</h2><div class="g" id="ph4" style="margin-top:28px"></div></div></section>
+<section class="approach alt"><div class="w"><h2>How I Approach Learning Design</h2><div class="g" id="ph4" style="margin-top:28px"></div>
+<div class="acts" style="margin-top:36px"><a class="btn" href="bio.html">Read My Bio</a><a class="btn o" href="goals.html">Read My Goal Statement</a></div></div></section>
 
-<section id="goals" class="alt has-wm"><svg class="wm wm-goals" viewBox="0 0 100 130" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-leaf"/></svg><div class="w">
-<h2>Goal Statement</h2>
-<p class="lead">How I plan to use this portfolio, and the evidence behind the instructional design skills I am bringing into the field.</p>
-
-<h3>Professional Goal and Self-Assessment</h3>
-<p>My goal is to begin my career as an instructional designer, building on the M.S. in Instructional Design and Technology program at the University of Tampa and the professional experience I bring from ERP software implementation and corporate training.</p>
-<p>Instructional design work calls for a mix of skills: analyzing learners and content, writing clear objectives, structuring instruction logically, building interactive eLearning in tools such as Articulate Rise 360 and Storyline 360, and revising a course based on feedback. I am still early in formally practicing several of these skills, and I want this self-assessment to be honest rather than inflated.</p>
-<p>My strongest foundation is working directly with end users and translating complex processes into something they can learn and apply, built over several years of ERP implementation and software training where I regularly explained unfamiliar systems to people under real workplace pressure. My instructional design internship, where I redesigned a Retail Management course in Articulate Rise 360, gave me my first hands-on experience applying a formal design process rather than informal, on-the-job training. My coursework and the eLearning projects in this portfolio are where I am continuing to build fluency with Rise 360, Storyline 360, scenario-based design, and evaluation methods &mdash; areas I am actively developing, not areas I have mastered.</p>
-
-<p style="margin-top:40px"><b>The sections below connect the instructional design skills I am developing to the specific portfolio projects and experience that demonstrate them.</b></p>
-
-<div class="ex" style="margin-top:20px">
-
-<article class="card"><h3>Instructional Design and Course Development</h3>
-<p class="mu sm"><b>Evidence:</b> <a class="tl" href="#project/retail-management-course">Retail Management Course Redesign &rarr; view case study</a></p>
-<p>During my instructional design internship with Braathe Enterprises, I supported the redesign of an existing Retail Management course, working through course analysis, design, implementation, evaluation, and revision, and incorporating feedback into iterative improvements. This project is my clearest evidence of applying a structured design process and building in assessment through knowledge checks, rather than starting from an informal or ad hoc approach.</p></article>
-
-<article class="card"><h3>eLearning Development with Articulate Rise 360 and Storyline 360</h3>
-<p class="mu sm"><b>Evidence:</b> <a class="tl" href="#project/disaster-response-simulator">Disaster Response Simulator (Storyline 360)</a> &middot; <a class="tl" href="#project/retail-management-course">Retail Management Course Redesign</a> &middot; <a class="tl" href="#project/email-communication-skills">Professional Email Communication for Workplace Success</a> <span class="mu sm">(both Rise 360)</span></p>
-<p>I have built eLearning in both of Articulate's major authoring tools. The Retail Management Course Redesign and Professional Email Communication for Workplace Success were developed in Rise 360, and the Disaster Response Simulator was built in Storyline 360 to support branching, scenario-based interaction. Working across both tools has given me a practical sense of when a simpler, responsive Rise course fits the content and when Storyline's more flexible interactions are needed.</p></article>
-
-<article class="card"><h3>Interactive and Scenario-Based Learning</h3>
-<p class="mu sm"><b>Evidence:</b> <a class="tl" href="#project/disaster-response-simulator">Disaster Response Simulator &rarr; view case study</a></p>
-<p>The Disaster Response Simulator is an interactive hurricane and disaster-response learning experience built around scenarios and decision-making activities rather than static content. Designing it meant thinking through branching choices and consequences, which is the skill I most want to keep building as I take on more complex scenario-based work.</p></article>
-
-<article class="card"><h3>Multimedia and Learner-Centered Design</h3>
-<p class="mu sm"><b>Evidence:</b> <a class="tl" href="#project/retail-management-course">Retail Management Course Redesign</a> &middot; <a class="tl" href="#project/science-of-nutrition">The Science Behind Nutrition</a></p>
-<p>As part of the Retail Management Course Redesign, I developed multimedia learning resources and knowledge checks to support the redesigned content. Alongside it, The Science Behind Nutrition, also built in Rise 360, reflects my ongoing practice translating subject matter into a structured, self-paced digital course organized around how learners move through content.</p></article>
-
-<article class="card"><h3>Evaluation, Feedback, and Continuous Improvement</h3>
-<p class="mu sm"><b>Evidence:</b> <a class="tl" href="#project/retail-management-course">Retail Management Course Redesign &rarr; view case study</a></p>
-<p>My internship work on the Retail Management course followed a full evaluation and revision cycle &mdash; analysis, implementation, and evaluation &mdash; and I incorporated feedback into iterative improvements rather than treating the first draft as final. That is the habit I most want to carry into future projects: testing a design with real users or reviewers, not just completing a build.</p></article>
-
-<article class="card"><h3>Technology Integration and Stakeholder Collaboration</h3>
-<p class="mu sm"><b>Evidence:</b> <a class="tl" href="#experience">ERP implementation experience, Pakiza Software Ltd. and Logic Software Ltd. &rarr; view experience</a></p>
-<p>Before instructional design, I spent several years in ERP software implementation, working directly with clients to understand business requirements, training end users on new systems, and evaluating whether a client's existing processes matched standard practice. That work required ongoing collaboration with clients and end users across each implementation, a dynamic I expect to meet again when designing training for people inside an organization. I am carrying that stakeholder-facing experience into instructional design work, including the internship, where I worked within an organization's existing course and feedback process.</p></article>
-
-</div>
-
-<p class="mu" style="margin-top:28px">A sixth project in this portfolio, Leading with Emotional Intelligence, is still being documented. Once its content, development tool, and design details are confirmed, it will be added to the skills evidence above.</p>
-
-<h3 style="margin-top:56px">Looking Ahead</h3>
-<p>This portfolio will keep developing alongside my coursework. I expect to publish interactive Rise 360 and Storyline 360 demos directly on the site, finish documenting Leading with Emotional Intelligence, and add new projects as I complete them. Together, the experience and projects described above are the evidence I currently have for an entry-level instructional design role &mdash; not a finished skill set, but a foundation I intend to keep building through the rest of this program and into my first position in the field.</p>
-
-</div></section>
 
 <section id="experience"><div class="w"><h2>Experience</h2><p class="lead">From ERP implementation and user training to instructional design.</p><div class="ex" id="ex"></div></div></section>
 
@@ -212,18 +119,12 @@ footer{border-top:1px solid var(--bd);padding:40px 0;font-size:14px}.fw{display:
 </main>
 
 <footer class="has-wm"><svg class="wm wm-footer" viewBox="0 0 120 160" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-palm"/></svg><div class="w fw"><div><b>Zamal Haider Shish</b><br><span class="mu">Instructional Designer &amp; eLearning Developer</span><p class="mu" style="margin-top:8px">&copy; 2026 Zamal Haider Shish. All rights reserved.</p></div>
-<div><nav aria-label="Footer"><a href="#about">About Me</a><a href="#goals">Goal Statement</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#resume">Resume</a><a href="#contact">Contact</a></nav>
-<p class="ln" style="margin-top:12px"><a id="fe" aria-label="Email">Email</a><a id="fl2" aria-label="LinkedIn" target="_blank" rel="noopener">LinkedIn</a></p></div></div></footer>
+<div><nav aria-label="Footer"><a href="bio.html">Bio</a><a href="goals.html">Goal Statement</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#resume">Resume</a><a href="#contact">Contact</a></nav>
+<p class="ln" style="margin-top:12px"><a id="fe" aria-label="Email" href="#contact">Email</a><a id="fl2" aria-label="LinkedIn" href="#contact" target="_blank" rel="noopener">LinkedIn</a></p></div></div></footer>
 <div id="cs" role="dialog" aria-modal="true" aria-label="Project case study" tabindex="-1"></div>
 
 <script>
-/* ===== EDIT HERE: site links ===== */
-const SITE={
- email:"zamalhaider1@gmail.com",
- linkedin:"PLACEHOLDER_LINKEDIN_URL", // REPLACE WITH LINKEDIN URL
- resume:"Zamal-Haider-Shish-Resume.pdf", // REPLACE: put the PDF next to index.html
- testimonials:[] // {name,role,org,quote,photo}. The section stays hidden while this is empty.
-};
+/* Site links (email, LinkedIn, resume file) are set once in site.js, which every page shares. */
 /* ===== EDIT HERE: projects. embedUrl = Rise share link, Storyline S3 URL, other hosted HTML, or YouTube/Vimeo ===== */
 const P=o=>({thumbnail:"",embedUrl:"",externalUrl:"",audience:"",problem:"",solution:"",role:"Instructional designer and eLearning developer",process:["Analyze","Design","Develop","Implement","Evaluate"],outcome:"",caseStudy:{},featured:true,...o});
 // caseStudy: {objectives:[], decisions:[], experience:"", evaluation:"", lessons:"", screenshots:[]}  // REPLACE WITH PROJECT SCREENSHOTS
@@ -264,12 +165,10 @@ const TBD='<span class="mu">Details to be added.</span>',chip=t=>`<span class="c
 const list=a=>a&&a.length?`<ul>${a.map(x=>`<li>${E(x)}</li>`).join("")}</ul>`:TBD;
 const set=(id,a)=>{const n=$(id);for(const k in a)n[k]=a[k]};
 const LI=SITE.linkedin.startsWith("http")?SITE.linkedin:"#contact";
-const NAV=[["Home","home"],["About Me","about"],["Goal Statement","goals"],["Experience","experience"],["Projects","projects"],["Skills & Tools","skills"],["Education","education"],["Resume","resume"],["Contact","contact"]];
-$("#menu").innerHTML=NAV.map(([t,h])=>`<a href="#${h}">${t}</a>`).join("");
 $("#cred").innerHTML=CRED.map(chip).join("");
 set("#dl",{href:SITE.resume});set("#dl2",{href:SITE.resume});set("#vr",{href:SITE.resume});
-set("#em",{href:"mailto:"+SITE.email,textContent:SITE.email});set("#em2",{href:"mailto:"+SITE.email});set("#fe",{href:"mailto:"+SITE.email});
-["#li","#li2","#fl2"].forEach(s=>$(s).href=LI);
+set("#em",{href:"mailto:"+SITE.email,textContent:SITE.email});set("#em2",{href:"mailto:"+SITE.email});
+["#li","#li2"].forEach(s=>$(s).href=LI);
 $("#ph4").innerHTML=PHIL.map(p=>`<div class="card rv"><h3>${p[0]}</h3><p class="mu">${p[1]}</p></div>`).join("");
 $("#ex").innerHTML=EXP.map(x=>`<article class="card rv"><div class="eh"><h3>${E(x.role)}</h3><span class="mu sm">${E(x.dates)}</span></div><p class="org">${E(x.org)} ${x.tag?chip(x.tag):""}</p>${list(x.pts)}</article>`).join("");
 $("#sk").innerHTML=Object.entries(SKILLS).map(([k,v])=>`<div class="card rv"><h3>${k}</h3><p>${v.map(chip).join("")}</p></div>`).join("");
@@ -314,12 +213,5 @@ addEventListener("keydown",e=>{if(e.key==="Escape"&&$("#cs").classList.contains(
 /* contact form: opens the visitor's email app */
 $("#cf").onsubmit=e=>{e.preventDefault();const f=e.target.elements;location.href=`mailto:${SITE.email}?subject=${encodeURIComponent(f.s.value)}&body=${encodeURIComponent(f.m.value+"\n\n"+f.n.value+" ("+f.e.value+")")}`};
 
-/* nav: mobile menu, elevation on scroll, active section, gentle fade-in */
-$("#mb").onclick=()=>{const o=$("#menu").classList.toggle("open");$("#mb").setAttribute("aria-expanded",o)};
-$("#menu").onclick=()=>{$("#menu").classList.remove("open");$("#mb").setAttribute("aria-expanded",false)};
-addEventListener("scroll",()=>$("#nav").classList.toggle("sc",scrollY>8),{passive:true});
-if("IntersectionObserver"in window){
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$("#menu a").forEach(a=>a.classList.toggle("on",a.hash==="#"+e.target.id))}),{rootMargin:"-45% 0px -50% 0px"});$$("section[id]").forEach(s=>io.observe(s));
-const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");ro.unobserve(e.target)}}),{threshold:.1});$$(".rv").forEach(x=>ro.observe(x))}else $$(".rv").forEach(x=>x.classList.add("in"));
 </script>
 </body></html>
