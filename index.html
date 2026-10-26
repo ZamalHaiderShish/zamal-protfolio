@@ -11,7 +11,7 @@ RUN LOCALLY: open index.html, or run `npx serve .` in this folder.
 RISE 360 PROJECT: Rise > Share > copy public link > paste into that project's embedUrl.
 STORYLINE 360 PROJECT: Publish > Web, upload the output folder to a public S3 bucket, paste https://YOUR-BUCKET.s3.amazonaws.com/project/story.html into embedUrl.
 VIDEO: paste a YouTube or Vimeo link into embedUrl. Empty embedUrl shows "Interactive Project Preview Coming Soon".
-NEW PROJECT: copy any P({...}) entry and give it a unique slug. It appears under Storyline 360 or Rise 360 based on its filters list (see GROUPS), and its card and case study page are built automatically. Add spot:{img,highlights} to show a project as a large featured card.
+NEW PROJECT: copy any P({...}) entry and give it a unique slug. It appears under Storyline 360 or Rise 360 based on its filters list (see GROUPS); the same list drives the filter buttons (see FILTERS). Its card and case study page are built automatically. Add spot:{img,highlights} to show a project as a large featured card.
 LEADING WITH EMOTIONAL INTELLIGENCE: this project is in PROJECTS with its category, description, tools, tags and embedUrl left empty on purpose (details not yet confirmed). Fill them in, then add it to the skill evidence in goals.html where it genuinely fits.
 RESUME: save your PDF as Zamal-Haider-Shish-Resume.pdf next to index.html (or change SITE.resume in site.js).
 PHOTO: keep zamal-profile.jpg in the same folder as index.html (the hero loads it by that relative name). The photo is used on this page only. To change it, replace that file.
@@ -126,7 +126,7 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 
 <section id="projects" class="alt"><div class="w"><h2>Projects</h2>
 <p class="lead">Interactive learning I have designed and built, grouped by the tool I built it in.</p>
-<nav class="pjn" id="pjn" aria-label="Project groups"></nav>
+<div id="fl" role="group" aria-label="Filter projects"></div><p class="sr-only" id="flr" aria-live="polite"></p>
 <div id="pgroups"></div></div></section>
 
 <section id="skills"><div class="w"><h2>Skills &amp; Tools</h2><p class="lead">What I bring to a project, grouped by how I use it.</p><div class="skg" id="sk"></div>
@@ -218,6 +218,8 @@ P({slug:"addie-model",title:"Introduction to the ADDIE Model",category:"Rise 360
  thumbnail:"addie/cover.jpg",
  embedUrl:"addie/index.html"})
 ];
+/* filter buttons above the projects: All, the tool groups, then topics. A project matches a filter when its filters list includes it. */
+const FILTERS=["All","Storyline","Rise 360","Instructional Design","Corporate Training","Higher Education"];
 /* project groups: a project appears in a group when its filters list includes the group's tool name */
 const GROUPS=[{id:"storyline-projects",tool:"Storyline",title:"Storyline 360 projects",sub:"Custom interactions, branching scenarios, and simulations",m:"Sl",c:"#b04a26",unit:["project","projects"]},
  {id:"rise-projects",tool:"Rise 360",title:"Rise 360 courses",sub:"Responsive, mobile-friendly courses built from interactive blocks",m:"Ri",c:"#2f6f8f",unit:["course","courses"]}];
@@ -299,10 +301,18 @@ const GI=p=>{const i=GROUPS.findIndex(g=>p.filters.includes(g.tool));return i<0?
 const OTHER=PROJECTS.filter(p=>GI(p)===99),GS=GROUPS.map(g=>({...g,list:PROJECTS.filter(p=>GI(p)===GROUPS.indexOf(g))})).filter(g=>g.list.length);
 if(OTHER.length)GS.push({id:"other-projects",title:"Other projects",sub:"More learning experiences",m:"+",c:"#4e7a5a",list:OTHER});
 const cnt=(n,u=["project","projects"])=>n+" "+(n===1?u[0]:u[1]);
-$("#pjn").innerHTML=GS.map(g=>`<a href="#${g.id}"><span class="tki" style="background:${g.c}" aria-hidden="true">${g.m}</span>${E(g.title)}<span class="pjc">${g.list.length}</span></a>`).join("");
-$("#pgroups").innerHTML=GS.map(g=>{const sp=g.list.filter(p=>p.spot),rest=g.list.filter(p=>!p.spot);
- return `<div class="pgrp" id="${g.id}"><div class="pgh"><span class="tki" style="background:${g.c}" aria-hidden="true">${g.m}</span><div><h3>${E(g.title)}</h3><p class="mu sm">${E(g.sub)} · ${cnt(g.list.length,g.unit)}</p></div></div>
-${sp.map(spot).join("")}${rest.length?`${rest.length>1?'<p class="swipe" aria-hidden="true">Swipe to see more &rarr;</p>':""}<div class="g3" tabindex="0" aria-label="${E(g.title)}">${rest.map(p=>card(p,g)).join("")}</div>`:""}</div>`}).join("");
+let F="All";const inF=p=>F==="All"||p.filters.includes(F),fc=f=>f==="All"?PROJECTS.length:PROJECTS.filter(p=>p.filters.includes(f)).length;
+const fbtn=f=>{const g=GROUPS.find(x=>x.tool===f);return `<button class="fb" data-f="${E(f)}" aria-pressed="${f===F}">${g?`<span class="tki" style="background:${g.c}" aria-hidden="true">${g.m}</span>`:""}${E(g?g.title.replace(/ (projects|courses)$/,""):f)}<span class="fbc">${fc(f)}</span></button>`};
+const FT=FILTERS.filter(f=>fc(f)),tools=FT.filter(f=>GROUPS.some(g=>g.tool===f)),topics=FT.filter(f=>f!=="All"&&!tools.includes(f));
+$("#fl").innerHTML=[fbtn("All"),...tools.map(fbtn),topics.length?'<span class="fsep" aria-hidden="true"></span>':"",...topics.map(fbtn)].join("");
+const renderProjects=()=>{const gs=GS.map(g=>({...g,vis:g.list.filter(inF)})).filter(g=>g.vis.length);
+$("#pgroups").innerHTML=gs.length?gs.map(g=>{const sp=g.vis.filter(p=>p.spot),rest=g.vis.filter(p=>!p.spot);
+ return `<div class="pgrp" id="${g.id}"><div class="pgh"><span class="tki" style="background:${g.c}" aria-hidden="true">${g.m}</span><div><h3>${E(g.title)}</h3><p class="mu sm">${E(g.sub)} · ${cnt(g.vis.length,g.unit)}</p></div></div>
+${sp.map(spot).join("")}${rest.length?`${rest.length>1?'<p class="swipe" aria-hidden="true">Swipe to see more &rarr;</p>':""}<div class="g3" tabindex="0" aria-label="${E(g.title)}">${rest.map(p=>card(p,g)).join("")}</div>`:""}</div>`}).join(""):'<p class="mu">No projects in this category yet.</p>';
+const n=gs.reduce((t,g)=>t+g.vis.length,0);$("#flr").textContent=F==="All"?"":`Showing ${n} ${n===1?"project":"projects"} for ${F}`;
+if(window.REVEAL)REVEAL($$("#pgroups .rv"))};
+renderProjects();
+$("#fl").onclick=e=>{const b=e.target.closest(".fb");if(!b)return;F=b.dataset.f;$$("#fl .fb").forEach(x=>x.setAttribute("aria-pressed",x===b));renderProjects()};
 
 /* embed viewer: iframe when embedUrl is set, placeholder otherwise */
 const embedSrc=u=>{let m;if(m=u.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=)([\w-]{11})/))return"https://www.youtube.com/embed/"+m[1];if(m=u.match(/vimeo\.com\/(\d+)/))return"https://player.vimeo.com/video/"+m[1];return u};
