@@ -59,3 +59,17 @@ footer{border-top:1px solid var(--bd);padding:40px 0;font-size:14px}.fw{display:
 .sp-next{padding:40px 0 56px}.sp-next .pn{margin-top:0}
 @media(max-width:900px){.sp{padding-top:44px}.sp-next{padding:32px 0 48px}}
 
+/* ===== project page (compact layout) ===== */
+.cw{max-width:1040px;padding:24px 24px 64px}
+.csh{margin-top:28px}.csh h2{margin:6px 0 10px}.csh .lead{margin-bottom:14px;max-width:760px}
+.facts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));margin-top:20px}
+.fact{background:var(--bg);border:1px solid var(--bd);border-radius:12px;padding:14px 16px}.fact .fl{display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ac2);margin-bottom:4px}.fact p{font-size:14px;line-height:1.55}
+.cw h3#demo{margin:32px 0 12px}
+.cw .emb{aspect-ratio:auto;height:min(78vh,720px)}
+.secs{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));margin-top:28px}
+.sec{padding:20px 22px}.cw .sec h3{margin:0 0 8px;font-size:17px}.sec p,.sec li{font-size:15px}.sec ul{margin:0}
+.cw .pn{margin-top:40px}
+.th{text-decoration:none}.th.nt{background:linear-gradient(135deg,var(--soft),#dfe7f1);color:var(--ac);font-weight:600;letter-spacing:.02em}
+.pc .th img{transition:transform .3s}.pc:hover .th img{transform:scale(1.03)}
+@media(max-width:600px){.cw .emb{height:70vh}}
+.cw .emb.ph{height:auto;min-height:220px;padding:40px 24px}

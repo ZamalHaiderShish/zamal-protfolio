@@ -129,8 +129,18 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 const P=o=>({thumbnail:"",embedUrl:"",externalUrl:"",audience:"",problem:"",solution:"",role:"Instructional designer and eLearning developer",process:["Analyze","Design","Develop","Implement","Evaluate"],outcome:"",caseStudy:{},featured:true,...o});
 // caseStudy: {objectives:[], decisions:[], experience:"", evaluation:"", lessons:"", screenshots:[]}  // REPLACE WITH PROJECT SCREENSHOTS
 const PROJECTS=[
-P({slug:"leading-with-emotional-intelligence",title:"Leading with Emotional Intelligence",category:"Rise 360 Course",description:"",thumbnail:"",tools:["Articulate Rise 360"],tags:["Rise 360","Leadership"],filters:["Rise 360"],role:"",process:[],audience:"",problem:"",outcome:"",
- embedUrl:"emotional-intelligence/index.html"}), // description still to be added
+P({slug:"leading-with-emotional-intelligence",title:"Leading with Emotional Intelligence",category:"Rise 360 Course / Team MOOC",
+ description:"A self-paced, team-built Rise 360 course that helps learners build emotional intelligence through short, practical lessons on personal and social competence.",
+ thumbnail:"emotional-intelligence/assets/3182749.jpg",
+ tools:["Articulate Rise 360","Generative AI (images and narration)"],
+ tags:["Rise 360","Emotional Intelligence","MOOC","Accessibility","Team Project"],filters:["Rise 360","Instructional Design"],
+ role:"Co-author on a seven-person team in the MS IDT course Open Learning Environments and Artificial Intelligence. I designed and developed the Improving Self-Awareness lesson.",
+ audience:"Online learners who want to apply emotional intelligence at work, at home, and in daily interactions.",
+ caseStudy:{
+  objectives:["Recognize emotions and how they influence behavior (self-awareness)","Manage emotional reactions (self-regulation)","Build internal drive with clear goals (self-motivation)","Understand others' perspectives (empathy)","Apply core social skills such as communication and conflict management"],
+  decisions:["Structured into Personal Competence and Social Competence sections","Short, chunked lessons with plain language to reduce cognitive load","Keyboard-friendly navigation and no timed interactions","Audio narration to support ESL and auditory learners"],
+  experience:"Narrated lessons, videos, knowledge checks, flashcards, sorting and matching activities, scenarios and reflection prompts, ending with a final assessment and certificate of completion."},
+ embedUrl:"emotional-intelligence/index.html"}),
 P({slug:"retail-management-course",title:"Retail Management Course Redesign",category:"Rise 360 / Instructional Design",description:"Redesign and improvement of Retail Management learning content created during an instructional design internship.",tools:["Articulate Rise 360","Canva or multimedia tools","Instructional design process"],tags:["Course Design","Rise 360","Higher Education","UX","Assessment"],filters:["Rise 360","Instructional Design","Higher Education"],role:"Instructional design intern",
  thumbnail:"", // REPLACE WITH PROJECT THUMBNAIL
  embedUrl:""}), // REPLACE WITH RISE 360 URL
@@ -177,7 +187,7 @@ $("#ed").innerHTML=EDU.map(e=>`<article class="card rv"><h3>${E(e.d)}</h3><p cla
 if(SITE.testimonials.length){const t=$("#tm");t.hidden=false;t.innerHTML=`<div class="w"><h2>What Collaborators Say</h2><div class="g" style="margin-top:28px">${SITE.testimonials.map(x=>`<figure class="card">${x.photo?`<img src="${E(x.photo)}" alt="${E(x.name)}" width="48" height="48">`:""}<blockquote style="margin:8px 0">${E(x.quote)}</blockquote><figcaption><b>${E(x.name)}</b><br><span class="mu sm">${E(x.role)}, ${E(x.org)}</span></figcaption></figure>`).join("")}</div></div>`}
 
 /* projects grid + filters */
-const card=p=>`<article class="card pc"><div class="th">${p.thumbnail?`<img src="${E(p.thumbnail)}" alt="Thumbnail for ${E(p.title)}" loading="lazy">`:"Project thumbnail"}</div>
+const card=p=>`<article class="card pc"><a class="th${p.thumbnail?"":" nt"}" href="#project/${p.slug}" tabindex="-1" aria-hidden="true">${p.thumbnail?`<img src="${E(p.thumbnail)}" alt="" loading="lazy">`:`<span>${E((p.tools[0]||p.category||"Project").replace("Articulate ",""))}</span>`}</a>
 <p class="mu sm">${p.category?E(p.category):"Project details coming soon"}</p><h3>${E(p.title)}</h3><p class="mu">${p.description?E(p.description):"Full project details are being finalized and will be added soon."}</p>${p.tags.length?`<p class="tags">${p.tags.map(chip).join("")}</p>`:""}
 <p class="mu sm tools-line"><b>Tools:</b> ${p.tools.length?E(p.tools.join(", ")):"To be confirmed"}</p>
 <div class="acts"><a class="btn" href="#project/${p.slug}">View Project</a></div></article>`;
@@ -196,13 +206,21 @@ return u?`<div class="emb"><iframe src="${E(embedSrc(u))}" title="${E(p.title)} 
 let last;
 function show(slug,demo){const i=PROJECTS.findIndex(p=>p.slug===slug);if(i<0)return hide();
 const p=PROJECTS[i],c=p.caseStudy||{},n=PROJECTS.length,pv=PROJECTS[(i+n-1)%n],nx=PROJECTS[(i+1)%n];
-const S=(h,v)=>`<h3>${h}</h3>${Array.isArray(v)?list(v):v?`<p>${E(v)}</p>`:`<p>${TBD}</p>`}`;
+/* only sections with content are shown, so nothing says "Details to be added" */
+const has=v=>Array.isArray(v)?v.length>0:!!v;
+const body=v=>Array.isArray(v)?list(v):`<p>${E(v)}</p>`;
+const fact=(h,v)=>has(v)?`<div class="fact"><span class="fl">${h}</span>${Array.isArray(v)?`<p>${E(v.join(" · "))}</p>`:`<p>${E(v)}</p>`}</div>`:"";
+const sec=(h,v)=>has(v)?`<div class="card sec"><h3>${h}</h3>${body(v)}</div>`:"";
+const facts=fact("My Role",p.role)+fact("Audience",p.audience)+fact("Tools",p.tools)+fact("Process",p.process);
+const secs=sec("The Challenge",p.problem)+sec("Learning Objectives",c.objectives)+sec("Design Decisions",c.decisions||p.solution)+sec("Learning Experience",c.experience)+sec("Evaluation / Feedback",c.evaluation)+sec("Final Outcome",p.outcome)+sec("Lessons Learned",c.lessons);
 const shots=(c.screenshots||[]).map((s,k)=>`<img src="${E(s)}" alt="${E(p.title)} screenshot ${k+1}" style="width:100%;border:1px solid var(--bd);border-radius:12px;margin-top:12px">`).join("");
 const cs=$("#cs");if(!cs.classList.contains("on"))last=document.activeElement;
-cs.innerHTML=`<div class="cw"><a class="btn o" href="#projects">Back to Projects</a><h2 style="margin-top:32px">${E(p.title)}</h2><p class="mu">${E(p.category)}</p><p style="margin-top:14px">${p.tags.map(chip).join("")}</p>
-${S("Project Overview",p.description)}${S("The Challenge",p.problem)}${S("Target Audience",p.audience)}${S("Learning Objectives",c.objectives)}${S("My Role",p.role)}${S("Design Process",p.process)}${S("Tools Used",p.tools)}${S("Design Decisions",c.decisions||p.solution)}${S("Learning Experience",c.experience)}${S("Evaluation / Feedback",c.evaluation)}${S("Final Outcome",p.outcome)}${S("Lessons Learned",c.lessons)}${shots}
+cs.innerHTML=`<div class="cw"><a class="btn o" href="#projects">&larr; Back to Projects</a>
+<div class="csh"><p class="eb">${E(p.category)}</p><h2>${E(p.title)}</h2>${p.description?`<p class="lead">${E(p.description)}</p>`:""}<p>${p.tags.map(chip).join("")}</p></div>
+${facts?`<div class="facts">${facts}</div>`:""}
 <h3 id="demo">Interactive Demo</h3>${embed(p)}
-<div class="pn"><a class="btn o" href="#project/${pv.slug}">Previous Project: ${E(pv.title)}</a><a class="btn o" href="#project/${nx.slug}">Next Project: ${E(nx.title)}</a></div></div>`;
+${secs?`<div class="secs">${secs}</div>`:""}${shots}
+<div class="pn"><a class="btn o" href="#project/${pv.slug}">&larr; ${E(pv.title)}</a><a class="btn o" href="#project/${nx.slug}">${E(nx.title)} &rarr;</a></div></div>`;
 cs.classList.add("on");document.body.style.overflow="hidden";cs.scrollTop=0;
 if(demo)$("#demo").scrollIntoView();else cs.focus()}
 function hide(){const cs=$("#cs");if(!cs.classList.contains("on"))return;cs.classList.remove("on");document.body.style.overflow="";if(last)last.focus()}
