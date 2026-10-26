@@ -107,3 +107,9 @@ header{background:var(--page)}
 .cbx{padding:18px}.cbh{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.cbh h3{font-size:17px}
 .cbx img{display:block;width:100%;height:auto;max-height:78vh;object-fit:contain;border-radius:8px;border:1px solid var(--bd);background:#fff}
 @media(max-width:760px){.ec{grid-template-columns:1fr}.eimg{min-height:170px}.etl{padding-left:26px}.edot{left:-26px;width:16px;height:16px}.etl:before{left:7px}}
+
+/* ===== experience photos (all 3:2) ===== */
+.xi{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:28px;align-items:center}
+.xf{margin:0;aspect-ratio:3/2;border-radius:12px;overflow:hidden;border:1px solid var(--bd);background:var(--soft)}
+.xf img{display:block;width:100%;height:100%;object-fit:cover}
+@media(max-width:860px){.xi{grid-template-columns:1fr}.xf{order:-1}}
