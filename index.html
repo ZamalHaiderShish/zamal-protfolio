@@ -124,8 +124,8 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 <p class="lead">A selection of instructional design, eLearning, multimedia, and interactive learning experiences I have developed.</p>
 <div id="fl" role="group" aria-label="Filter projects"></div><div class="g3" id="pg"></div></div></section>
 
-<section id="skills"><div class="w"><h2>Skills &amp; Tools</h2><p class="lead">Grouped by what I use them for.</p><div class="g" id="sk"></div>
-<div class="tools"><h3>My Toolkit</h3><div class="g" id="tk"></div></div></div></section>
+<section id="skills"><div class="w"><h2>Skills &amp; Tools</h2><p class="lead">What I bring to a project, grouped by how I use it.</p><div class="skg" id="sk"></div>
+<div class="tools"><h3>My Toolkit</h3><p class="mu tkl">The software I design and build with.</p><div class="tkg" id="tk"></div></div></div></section>
 
 <section id="education" class="alt"><div class="w"><h2>Education</h2><p class="lead">From software engineering to instructional design and technology.</p><div class="etl" id="ed"></div></div></section>
 <dialog id="certbox" aria-label="Certificate"><div class="cbx"><div class="cbh"><h3></h3><button class="btn o cx" aria-label="Close certificate">Close</button></div><img alt=""></div></dialog>
@@ -223,7 +223,18 @@ const SKILLS={"Instructional Design":["ADDIE","Learner Analysis","Learning Objec
 "Technology":["HTML","CSS","JavaScript","Python","Basic Java","Basic C++","PHP","Microsoft Office"],
 "Professional":["ERP Implementation","Software Training","Client Communication","Project Coordination","Requirement Analysis","Business Process Analysis","Stakeholder Collaboration"],
 "Emerging Interests":["Artificial Intelligence","Virtual Reality","Learning Analytics","UX / Learner Experience","Gamification"]};
-const TOOLKIT=["Articulate Storyline 360","Articulate Rise 360","Microsoft PowerPoint","Canva","Learning Management Systems","Generative AI Tools","HTML / CSS / JavaScript","Python"];
+const TOOLKIT=[
+ {n:"Articulate Storyline 360",u:"Branching simulations and interactions",m:"Sl",c:"#c4552d"},
+ {n:"Articulate Rise 360",u:"Responsive, mobile-friendly courses",m:"Ri",c:"#2f6f8f"},
+ {n:"Microsoft PowerPoint",u:"Storyboards and visual layouts",m:"P",c:"#b7472a"},
+ {n:"Canva",u:"Graphics, thumbnails and job aids",m:"Ca",c:"#1f8a8a"},
+ {n:"Learning Management Systems",u:"Publishing and course delivery",m:"LMS",c:"#4e7a5a"},
+ {n:"Generative AI Tools",u:"Images, narration and drafting",m:"AI",c:"#6b4e9a"},
+ {n:"HTML / CSS / JavaScript",u:"Web pages, like this portfolio",m:"&lt;/&gt;",c:"#c9a227",dark:1},
+ {n:"Python",u:"Scripting and data handling",m:"Py",c:"#2d5a87"}];
+const SKI={"Instructional Design":["compass","How I plan learning"],"eLearning Development":["play","How I build it"],"Technology":["code","Technical foundation"],"Professional":["briefcase","From my ERP career"],"Emerging Interests":["spark","What I'm exploring"]};
+const ICO={compass:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',play:'<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M10 8.5v5l4-2.5z"/><path d="M8 21h8M12 17v4"/>',code:'<path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/>',briefcase:'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>',spark:'<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6"/>'};
+const svg=k=>`<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">${ICO[k]}</svg>`;
 const EDU=[
 {d:"M.S. in Instructional Design & Technology",s:"The University of Tampa",l:"Tampa, Florida, USA",y:"Expected 2026",status:"In progress",mono:"UT",
  img:"education/ut-campus.jpg",imgAlt:"Plant Hall at The University of Tampa",
@@ -253,8 +264,8 @@ set("#em",{href:"mailto:"+SITE.email,textContent:SITE.email});set("#em2",{href:"
 ["#li","#li2"].forEach(s=>$(s).href=LI);
 $("#ph4").innerHTML=PHIL.map(p=>`<div class="card rv"><h3>${p[0]}</h3><p class="mu">${p[1]}</p></div>`).join("");
 $("#ex").innerHTML=EXP.map(x=>`<article class="card rv${x.img?" xi":""}"><div class="xt"><div class="eh"><h3>${E(x.role)}</h3><span class="mu sm">${E(x.dates)}</span></div><p class="org">${E(x.org)} ${x.tag?chip(x.tag):""}</p>${list(x.pts)}</div>${x.img?`<figure class="xf"><img src="${E(x.img)}" alt="${E(x.imgAlt||x.org)}" loading="lazy" width="1200" height="800"></figure>`:""}</article>`).join("");
-$("#sk").innerHTML=Object.entries(SKILLS).map(([k,v])=>`<div class="card rv"><h3>${k}</h3><p>${v.map(chip).join("")}</p></div>`).join("");
-$("#tk").innerHTML=TOOLKIT.map(t=>`<div class="card tk rv">${t}</div>`).join("");
+$("#sk").innerHTML=["Instructional Design","Emerging Interests","eLearning Development","Technology","Professional"].filter(k=>SKILLS[k]).map(k=>[k,SKILLS[k]]).map(([k,v],i)=>{const [ic,sub]=SKI[k]||["spark",""];return `<div class="card sk rv${i===0?" sk-wide":""}"><div class="skh"><span class="ski">${svg(ic)}</span><div><h3>${k}</h3><p class="mu sm">${sub} · ${v.length} skills</p></div></div><p class="skc">${v.map(chip).join("")}</p></div>`}).join("");
+$("#tk").innerHTML=TOOLKIT.map(t=>`<div class="card tk2 rv"><span class="tki" style="background:${t.c};color:${t.dark?"#1f2a22":"#fff"}" aria-hidden="true">${t.m}</span><div><p class="tkn">${E(t.n)}</p><p class="mu sm">${E(t.u)}</p></div></div>`).join("");
 $("#ed").innerHTML=EDU.map((e,i)=>`<article class="edu rv"><span class="edot" aria-hidden="true"></span><div class="card ec">
 <div class="eimg" data-mono="${E(e.mono)}"><img src="${E(e.img)}" alt="${E(e.imgAlt)}" loading="lazy" onerror="this.remove()"><span class="ey">${E(e.y)}</span></div>
 <div class="eb2"><p class="est">${E(e.status)}</p><h3>${E(e.d)}</h3><p class="org">${E(e.s)}<span class="mu"> · ${E(e.l)}</span></p>${e.note?`<p class="mu">${E(e.note)}</p>`:""}

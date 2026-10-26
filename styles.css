@@ -113,3 +113,18 @@ header{background:var(--page)}
 .xf{margin:0;aspect-ratio:3/2;border-radius:12px;overflow:hidden;border:1px solid var(--bd);background:var(--soft)}
 .xf img{display:block;width:100%;height:100%;object-fit:cover}
 @media(max-width:860px){.xi{grid-template-columns:1fr}.xf{order:-1}}
+/* ===== skills and toolkit ===== */
+.skg{display:grid;gap:20px;grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}
+.sk{padding:24px;transition:border-color .2s,transform .2s}.sk:hover{border-color:var(--gold);transform:translateY(-2px)}
+.sk-wide{grid-column:span 2;background:linear-gradient(135deg,#fff 60%,var(--soft))}
+.skh{display:flex;gap:14px;align-items:center;margin-bottom:16px}.skh h3{margin:0 0 2px}
+.ski{flex:none;width:46px;height:46px;border-radius:12px;background:var(--ac);display:grid;place-items:center;box-shadow:inset 0 -3px 0 var(--gold)}
+.ski svg{width:24px;height:24px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.skc .chip{background:var(--page)}
+.tools h3{margin-bottom:4px}.tkl{margin-bottom:18px}
+.tkg{display:grid;gap:14px;grid-template-columns:repeat(4,minmax(0,1fr))}
+.tk2{display:flex;gap:14px;align-items:center;padding:16px 18px;transition:border-color .2s,transform .2s}.tk2:hover{border-color:var(--gold);transform:translateY(-2px)}
+.tki{flex:none;width:44px;height:44px;border-radius:11px;display:grid;place-items:center;font-weight:800;font-size:15px;letter-spacing:-.02em}
+.tkn{font-weight:600;line-height:1.3;margin-bottom:2px}
+@media(max-width:1000px){.skg{grid-template-columns:repeat(2,minmax(0,1fr))}.tkg{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.skg,.tkg{grid-template-columns:1fr}.sk-wide{grid-column:auto}}
