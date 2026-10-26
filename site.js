@@ -29,8 +29,13 @@ if(mb&&menu){
  addEventListener("keydown",e=>{if(e.key==="Escape"&&menu.classList.contains("open")){close();mb.focus()}});
 }
 
-/* header gets a shadow once the page scrolls */
-if(nav){const sc=()=>nav.classList.toggle("sc",scrollY>8);addEventListener("scroll",sc,{passive:true});sc()}
+/* header gets a shadow once the page scrolls, and a thin gold bar shows how far down the page you are */
+const bar=document.createElement("div");bar.className="prog";bar.setAttribute("aria-hidden","true");document.body.appendChild(bar);
+let tk=0;const sc=()=>{tk=0;if(nav)nav.classList.toggle("sc",scrollY>8);const h=document.documentElement.scrollHeight-innerHeight;bar.style.transform="scaleX("+(h>0?Math.min(1,scrollY/h):0)+")"};
+addEventListener("scroll",()=>{if(!tk)tk=requestAnimationFrame(sc)},{passive:true});addEventListener("resize",sc);sc();
+
+/* the header "View Resume" button opens the PDF directly */
+$$(".hcta").forEach(a=>{a.href=SITE.resume;a.target="_blank";a.rel="noopener"});
 
 /* active-section highlight: only the home page has in-page (#...) menu links; Bio and Goal Statement mark themselves with aria-current */
 const spy=[...$$('#menu a[href^="#"]')],io="IntersectionObserver"in window;
@@ -39,10 +44,10 @@ if(spy.length&&io){
  $$("section[id]").forEach(s=>o.observe(s));
 }
 
-/* gentle fade-in for cards the home page builds */
-const rv=[...$$(".rv")];
-if(io){const r=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");r.unobserve(e.target)}}),{threshold:.1});rv.forEach(x=>r.observe(x))}
-else rv.forEach(x=>x.classList.add("in"));
+/* gentle fade-in for cards: cards in the same row appear one after another */
+const r=io?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const t=e.target;t.classList.add("in");r.unobserve(t);setTimeout(()=>t.style.setProperty("--d","0s"),1200)}}),{threshold:.1}):null;
+window.REVEAL=els=>[...els].forEach(x=>{const sib=[...x.parentNode.children].filter(c=>c.classList.contains("rv"));x.style.setProperty("--d",(sib.indexOf(x)%4)*90+"ms");r?r.observe(x):x.classList.add("in")});
+REVEAL($$(".rv"));
 };
 document.readyState==="loading"?document.addEventListener("DOMContentLoaded",run):run();
 })();

@@ -11,12 +11,12 @@ RUN LOCALLY: open index.html, or run `npx serve .` in this folder.
 RISE 360 PROJECT: Rise > Share > copy public link > paste into that project's embedUrl.
 STORYLINE 360 PROJECT: Publish > Web, upload the output folder to a public S3 bucket, paste https://YOUR-BUCKET.s3.amazonaws.com/project/story.html into embedUrl.
 VIDEO: paste a YouTube or Vimeo link into embedUrl. Empty embedUrl shows "Interactive Project Preview Coming Soon".
-NEW PROJECT: copy any P({...}) entry, give it a unique slug. Cards, filters and case study pages update automatically.
+NEW PROJECT: copy any P({...}) entry and give it a unique slug. It appears under Storyline 360 or Rise 360 based on its filters list (see GROUPS), and its card and case study page are built automatically. Add spot:{img,highlights} to show a project as a large featured card.
 LEADING WITH EMOTIONAL INTELLIGENCE: this project is in PROJECTS with its category, description, tools, tags and embedUrl left empty on purpose (details not yet confirmed). Fill them in, then add it to the skill evidence in goals.html where it genuinely fits.
 RESUME: save your PDF as Zamal-Haider-Shish-Resume.pdf next to index.html (or change SITE.resume in site.js).
 PHOTO: keep zamal-profile.jpg in the same folder as index.html (the hero loads it by that relative name). The photo is used on this page only. To change it, replace that file.
 DEPLOY ON GITHUB PAGES: repo Settings > Pages > Deploy from a branch > main, / (root). File names are case-sensitive. Embed links must be https://.
-NAV: the same 9-item menu is written by hand in all three pages (Home, Bio, Goal Statement, Experience, Projects, Skills & Tools, Education, Resume, Contact). If you add or rename an item, change it in index.html, bio.html and goals.html. The header is measured to fit all 9 items + the View Resume button on one line down to an ~1321px window; below that it switches to the hamburger menu. If you add more nav items or a longer brand name later, re-check this at ~1280-1360px.
+NAV: the same 7-item menu is written by hand in all three pages (Bio, Goal Statement, Experience, Projects, Skills & Tools, Education, Contact). Your name (top left) links home and the View Resume button opens the PDF. If you add or rename an item, change it in index.html, bio.html and goals.html. The menu fits on one line down to an ~1100px window; below that it switches to the hamburger menu.
 WATERMARKS: the soft desert plants (saguaro, prickly pear, ball cactus, tumbleweed, date palm) are decorative only (class "wm", built from the hidden <svg><defs> sprite near the top of <body>, which is the same block in all three pages). They are hidden on phone widths. Edit the --wm-* color variables in styles.css to retint them, or delete a .wm element to remove one.
 DEPLOY ON VERCEL: push this folder to GitHub > vercel.com/new > import the repo > Framework "Other", no build command > Deploy.
 If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
@@ -27,7 +27,11 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 <meta name="description" content="Portfolio of Zamal Haider Shish, an instructional designer and eLearning developer specializing in Articulate Storyline 360, Rise 360, interactive learning, corporate training, and learning technology.">
 <meta property="og:type" content="website"><meta property="og:title" content="Zamal Haider Shish | Instructional Designer & eLearning Developer">
 <meta property="og:description" content="Instructional design and eLearning portfolio: Storyline 360, Rise 360, interactive learning, corporate training, and learning technology.">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#1f3d2b">
+<meta property="og:url" content="https://zamalhaidershish.github.io/zamal-protfolio/"><meta property="og:image" content="https://zamalhaidershish.github.io/zamal-protfolio/og-image.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Zamal Haider Shish, Instructional Designer and eLearning Developer"><meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="styles.css">
 <script>/* old bookmarks: index.html#about and #goals now live on their own pages */if(location.hash==="#about")location.replace("bio.html");else if(location.hash==="#goals")location.replace("goals.html")</script>
 <script src="site.js"></script>
@@ -102,7 +106,7 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 </defs>
 </svg>
 <header id="nav"><div class="w nb"><a class="brand" href="#home">Zamal Haider Shish</a>
-<nav id="menu" aria-label="Main"><a href="#home">Home</a><a href="bio.html">Bio</a><a href="goals.html">Goal Statement</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills &amp; Tools</a><a href="#education">Education</a><a href="#resume">Resume</a><a href="#contact">Contact</a></nav><a class="btn hcta" href="#resume">View Resume</a>
+<nav id="menu" aria-label="Main"><a href="bio.html">Bio</a><a href="goals.html">Goal Statement</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills &amp; Tools</a><a href="#education">Education</a><a href="#contact">Contact</a></nav><a class="btn hcta" href="#resume">View Resume</a>
 <button id="mb" aria-label="Open menu" aria-expanded="false" aria-controls="menu">&#9776;</button></div></header>
 <main id="main">
 <section id="home" class="hero has-wm"><svg class="wm wm-hero" viewBox="0 0 120 160" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-saguaro"/></svg><div class="w hg"><div>
@@ -110,19 +114,20 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 <h1>Designing Meaningful Learning Experiences Through Technology</h1>
 <p class="lead">I combine instructional design, technology, multimedia development, and software implementation experience to create practical, engaging, and learner-centered digital learning experiences.</p>
 <div class="acts"><a class="btn" href="#projects">View My Work</a><a class="btn o" id="dl" download>Download Resume</a><a class="tl" href="#contact">Get in Touch</a></div>
-<p style="margin-top:28px" id="cred"></p></div>
+<ul class="stats" id="stats" aria-label="At a glance"></ul></div>
 <div class="photo"><img src="zamal-profile.jpg" alt="Zamal Haider Shish" width="620" height="775" fetchpriority="high" decoding="async" onerror="this.parentNode.classList.add('miss');this.remove()"></div></div></section>
 
 
-<section class="approach alt"><div class="w"><h2>How I Approach Learning Design</h2><div class="g" id="ph4" style="margin-top:28px"></div>
+<section class="approach alt"><div class="w"><h2>How I Approach Learning Design</h2><p class="lead">Four steps I follow on every project.</p><ol class="steps" id="ph4"></ol>
 <div class="acts" style="margin-top:36px"><a class="btn" href="bio.html">Read My Bio</a><a class="btn o" href="goals.html">Read My Goal Statement</a></div></div></section>
 
 
-<section id="experience"><div class="w"><h2>Experience</h2><p class="lead">From ERP implementation and user training to instructional design.</p><div class="ex" id="ex"></div></div></section>
+<section id="experience" class="has-wm"><svg class="wm wm-exp" viewBox="0 0 100 110" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-ball"/></svg><div class="w"><h2>Experience</h2><p class="lead">From ERP implementation and user training to instructional design.</p><div class="ex" id="ex"></div></div></section>
 
-<section id="projects" class="alt"><div class="w"><h2>Featured Projects</h2>
-<p class="lead">A selection of instructional design, eLearning, multimedia, and interactive learning experiences I have developed.</p>
-<div id="fl" role="group" aria-label="Filter projects"></div><div class="g3" id="pg"></div></div></section>
+<section id="projects" class="alt"><div class="w"><h2>Projects</h2>
+<p class="lead">Interactive learning I have designed and built, grouped by the tool I built it in.</p>
+<nav class="pjn" id="pjn" aria-label="Project groups"></nav>
+<div id="pgroups"></div></div></section>
 
 <section id="skills"><div class="w"><h2>Skills &amp; Tools</h2><p class="lead">What I bring to a project, grouped by how I use it.</p><div class="skg" id="sk"></div>
 <div class="tools"><h3>My Toolkit</h3><p class="mu tkl">The software I design and build with.</p><div class="tkg" id="tk"></div></div></div></section>
@@ -130,15 +135,15 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 <section id="education" class="alt"><div class="w"><h2>Education</h2><p class="lead">From software engineering to instructional design and technology.</p><div class="etl" id="ed"></div></div></section>
 <dialog id="certbox" aria-label="Certificate"><div class="cbx"><div class="cbh"><h3></h3><button class="btn o cx" aria-label="Close certificate">Close</button></div><img alt=""></div></dialog>
 
-<section id="resume" class="has-wm"><svg class="wm wm-resume" viewBox="0 0 100 110" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-ball"/></svg><div class="w"><h2>Resume</h2><p class="lead">Want a quick overview of my experience, education, and skills?</p>
-<div class="acts"><a class="btn" id="vr" target="_blank" rel="noopener">View Resume</a><a class="btn o" id="dl2" download>Download Resume</a></div></div></section>
+<!-- the Resume links now live in the Contact section below (id="resume") -->
 
 <section id="tm" class="alt" hidden></section>
 
 <section id="contact" class="alt has-wm"><svg class="wm wm-contact" viewBox="0 0 100 130" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-date"/></svg><div class="w cg"><div><h2>Let's Connect</h2>
 <p class="mu" style="margin-bottom:24px">I'm always interested in opportunities to create meaningful learning experiences, collaborate on instructional design projects, and continue growing in the field.</p>
 <p><b>Email:</b> <a id="em"></a></p><p><b>LinkedIn:</b> <a id="li" target="_blank" rel="noopener">Connect on LinkedIn</a></p><p><b>Location:</b> Florida, United States</p>
-<div class="acts"><a class="btn" id="em2">Email Me</a><a class="btn o" id="li2" target="_blank" rel="noopener">LinkedIn</a></div></div>
+<div class="acts"><a class="btn" id="em2">Email Me</a><a class="btn o" id="li2" target="_blank" rel="noopener">LinkedIn</a></div>
+<div class="rcard" id="resume"><span class="rdoc" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></span><div><p class="rt">My resume</p><p class="mu sm">A PDF overview of my experience, education, and skills.</p><div class="acts"><a class="btn" id="vr" target="_blank" rel="noopener">View resume</a><a class="btn o" id="dl2" download>Download PDF</a></div></div></div></div>
 <form class="card" id="cf"><label>Name<input name="n" required autocomplete="name"></label><label>Email<input name="e" type="email" required autocomplete="email"></label>
 <label>Subject<input name="s" required></label><label>Message<textarea name="m" rows="5" required></textarea></label>
 <button class="btn" type="submit">Send Message</button><p class="mu sm" style="margin-top:12px">This opens your email app with your message filled in.</p></form></div></section>
@@ -190,7 +195,8 @@ P({slug:"disaster-response-simulator",title:"Disaster Response Simulator",catego
   objectives:["Choose the safest response to an official hurricane warning","Plan an alternative evacuation route before leaving","Respond calmly to emergencies inside a shelter, such as power loss or an injured person"],
   decisions:["Story-driven setting: Cedar Bay, a coastal city facing a cascading disaster","Learners pick a character, with an expert guide who explains the rules","A health bar with four lives makes each choice count","Immediate feedback explains why each choice is safe or unsafe"],
   experience:"Branching scenarios across levels (Hurricane, Earthquake, Flood), character selection, decision points with consequences, and level-complete or game-over outcomes."},
- thumbnail:"disaster-response/cover.jpg",
+ thumbnail:"disaster-response/card.jpg",
+ spot:{img:"disaster-response/spotlight.jpg",highlights:["Branching hurricane scenario with real consequences","Four lives and instant feedback on every choice","Character selection and an expert guide"]},
  embedUrl:"disaster-response/story.html"}),
 P({slug:"science-of-nutrition",title:"The Science Behind Nutrition",category:"Rise 360",tools:["Articulate Rise 360"],tags:["Rise 360","Nutrition"],filters:["Rise 360","Instructional Design","Higher Education"],
  description:"A Rise 360 course that teaches university faculty and students how nutrition affects health and how to make informed food choices.",
@@ -212,9 +218,11 @@ P({slug:"addie-model",title:"Introduction to the ADDIE Model",category:"Rise 360
  thumbnail:"addie/cover.jpg",
  embedUrl:"addie/index.html"})
 ];
-const FILTERS=["All","Storyline","Rise 360","Instructional Design","Corporate Training","Higher Education"];
+/* project groups: a project appears in a group when its filters list includes the group's tool name */
+const GROUPS=[{id:"storyline-projects",tool:"Storyline",title:"Storyline 360 projects",sub:"Custom interactions, branching scenarios, and simulations",m:"Sl",c:"#b04a26",unit:["project","projects"]},
+ {id:"rise-projects",tool:"Rise 360",title:"Rise 360 courses",sub:"Responsive, mobile-friendly courses built from interactive blocks",m:"Ri",c:"#2f6f8f",unit:["course","courses"]}];
 const EXP=[
-{role:"Instructional Design Internship",org:"Braathe Enterprises",img:"experience/braathe.jpg",imgAlt:"Braathe Enterprises logo",dates:"2026",tag:"Instructional Design Internship",pts:["Supported the improvement and redesign of a Retail Management course.","Developed instructional content using Articulate Rise 360.","Worked through course analysis, design, implementation, evaluation, and revision.","Developed multimedia learning resources and knowledge checks.","Incorporated feedback into iterative course improvements."]},
+{role:"Instructional Design Internship",org:"Braathe Enterprises",img:"experience/braathe.jpg",imgAlt:"Braathe Enterprises logo",dates:"2026",pts:["Supported the improvement and redesign of a Retail Management course.","Developed instructional content using Articulate Rise 360.","Worked through course analysis, design, implementation, evaluation, and revision.","Developed multimedia learning resources and knowledge checks.","Incorporated feedback into iterative course improvements."]},
 {role:"Sr. Executive, ERP Implementation",org:"Pakiza Software Ltd.",img:"experience/pakiza.jpg",imgAlt:"The Pakiza Software Ltd. team celebrating together in the office",dates:"September 2023 to November 2024",pts:["Served in ERP software implementation and project leadership roles.","Worked with clients to understand business requirements.","Trained users on ERP software processes.","Supported software implementation and user adoption.","Evaluated requirements against standard business processes."]},
 {role:"Executive, ERP Implementation",org:"Logic Software Ltd.",img:"experience/logic.jpg",imgAlt:"Logic Software Ltd. Platform ERP banner",dates:"February 2022 to August 2023",pts:["Implemented ERP solutions for clients in the RMG and textile industry.","Trained end users on ERP software.","Supported project implementation activities.","Developed practical knowledge of garment-industry business processes.","Helped users understand and use complex software workflows."]},
 {role:"Senior Commercial Officer",org:"Cotton Zone Limited",img:"experience/cottonzone.jpg",imgAlt:"Garment production floor at Cotton Zone Limited",dates:"October 2018 to January 2022",pts:["Managed export-related commercial operations.","Worked with export documentation and commercial banking procedures.","Supported international transactions across European markets."]}];
@@ -224,10 +232,10 @@ const SKILLS={"Instructional Design":["ADDIE","Learner Analysis","Learning Objec
 "Professional":["ERP Implementation","Software Training","Client Communication","Project Coordination","Requirement Analysis","Business Process Analysis","Stakeholder Collaboration"],
 "Emerging Interests":["Artificial Intelligence","Virtual Reality","Learning Analytics","UX / Learner Experience","Gamification"]};
 const TOOLKIT=[
- {n:"Articulate Storyline 360",u:"Branching simulations and interactions",m:"Sl",c:"#c4552d"},
+ {n:"Articulate Storyline 360",u:"Branching simulations and interactions",m:"Sl",c:"#b04a26"},
  {n:"Articulate Rise 360",u:"Responsive, mobile-friendly courses",m:"Ri",c:"#2f6f8f"},
  {n:"Microsoft PowerPoint",u:"Storyboards and visual layouts",m:"P",c:"#b7472a"},
- {n:"Canva",u:"Graphics, thumbnails and job aids",m:"Ca",c:"#1f8a8a"},
+ {n:"Canva",u:"Graphics, thumbnails and job aids",m:"Ca",c:"#17706e"},
  {n:"Learning Management Systems",u:"Publishing and course delivery",m:"LMS",c:"#4e7a5a"},
  {n:"Generative AI Tools",u:"Images, narration and drafting",m:"AI",c:"#6b4e9a"},
  {n:"HTML / CSS / JavaScript",u:"Web pages, like this portfolio",m:"&lt;/&gt;",c:"#c9a227",dark:1},
@@ -249,7 +257,8 @@ const EDU=[
  note:"One-year pre-university program in information technology, completed with full credits.",
  cert:"education/foundation-certificate.jpg"}];
 const PHIL=[["Understand the Learner","Start with the learner, their needs, environment, prior knowledge, and performance goals."],["Design with Purpose","Every activity, interaction, and piece of content should support a clear learning objective."],["Make Learning Practical","Connect instruction to realistic tasks, decisions, and workplace situations."],["Evaluate and Improve","Observe how learners interact with the experience, collect feedback, and improve the design."]];
-const CRED=["M.S. Instructional Design & Technology","Articulate 360","Storyline 360","Rise 360","ERP Training & Implementation"];
+/* hero numbers: n = the number (counts up on screen), pre/suf = text before/after it */
+const STATS=[{n:PROJECTS.length,l:"Interactive eLearning projects"},{n:6,suf:"+",l:"Years of professional experience"},{n:3,pre:"~",l:"Years in ERP training and implementation"},{t:"2026",l:"M.S. in Instructional Design & Technology"}];
 /* ===== END EDIT: everything below is layout and behavior ===== */
 
 const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
@@ -258,31 +267,42 @@ const TBD='<span class="mu">Details to be added.</span>',chip=t=>`<span class="c
 const list=a=>a&&a.length?`<ul>${a.map(x=>`<li>${E(x)}</li>`).join("")}</ul>`:TBD;
 const set=(id,a)=>{const n=$(id);for(const k in a)n[k]=a[k]};
 const LI=SITE.linkedin.startsWith("http")?SITE.linkedin:"#contact";
-$("#cred").innerHTML=CRED.map(chip).join("");
+$("#stats").innerHTML=STATS.map(x=>`<li><b class="sn">${x.t?E(x.t):`${E(x.pre||"")}<span data-n="${x.n}">${x.n}</span>${E(x.suf||"")}`}</b><span class="sl">${E(x.l)}</span></li>`).join("");
+if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&"IntersectionObserver"in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.disconnect();
+ $$("#stats [data-n]").forEach(el=>{const n=+el.dataset.n,t0=performance.now();el.textContent="0";const tick=t=>{const k=Math.min(1,(t-t0)/1100);el.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(tick)};requestAnimationFrame(tick)})}),{threshold:.6});io.observe($("#stats"))}
 set("#dl",{href:SITE.resume});set("#dl2",{href:SITE.resume});set("#vr",{href:SITE.resume});
 set("#em",{href:"mailto:"+SITE.email,textContent:SITE.email});set("#em2",{href:"mailto:"+SITE.email});
 ["#li","#li2"].forEach(s=>$(s).href=LI);
-$("#ph4").innerHTML=PHIL.map(p=>`<div class="card rv"><h3>${p[0]}</h3><p class="mu">${p[1]}</p></div>`).join("");
-$("#ex").innerHTML=EXP.map(x=>`<article class="card rv${x.img?" xi":""}"><div class="xt"><div class="eh"><h3>${E(x.role)}</h3><span class="mu sm">${E(x.dates)}</span></div><p class="org">${E(x.org)} ${x.tag?chip(x.tag):""}</p>${list(x.pts)}</div>${x.img?`<figure class="xf"><img src="${E(x.img)}" alt="${E(x.imgAlt||x.org)}" loading="lazy" width="1200" height="800"></figure>`:""}</article>`).join("");
+$("#ph4").innerHTML=PHIL.map((p,i)=>`<li class="card step rv"><span class="stn" aria-hidden="true">0${i+1}</span><h3>${p[0]}</h3><p class="mu">${p[1]}</p></li>`).join("");
+$("#ex").innerHTML=EXP.map(x=>`<article class="card rv${x.img?" xi":""}"><div class="xt"><div class="eh"><h3>${E(x.role)}</h3><span class="mu sm">${E(x.dates)}</span></div><p class="org">${E(x.org)} ${x.tag?chip(x.tag):""}</p><ul>${x.pts.map((t,i)=>`<li${i>1?' class="more"':""}>${E(t)}</li>`).join("")}</ul>${x.pts.length>2?`<button class="xm" aria-expanded="false" aria-label="Show all details: ${E(x.role)}">Show all details</button>`:""}</div>${x.img?`<figure class="xf"><img src="${E(x.img)}" alt="${E(x.imgAlt||x.org)}" loading="lazy" width="1200" height="800"></figure>`:""}</article>`).join("");
+$("#ex").onclick=ev=>{const b=ev.target.closest(".xm");if(!b)return;const a=b.closest("article"),o=a.classList.toggle("open");b.setAttribute("aria-expanded",o);b.textContent=o?"Show fewer details":"Show all details"};
 $("#sk").innerHTML=["Instructional Design","Emerging Interests","eLearning Development","Technology","Professional"].filter(k=>SKILLS[k]).map(k=>[k,SKILLS[k]]).map(([k,v],i)=>{const [ic,sub]=SKI[k]||["spark",""];return `<div class="card sk rv${i===0?" sk-wide":""}"><div class="skh"><span class="ski">${svg(ic)}</span><div><h3>${k}</h3><p class="mu sm">${sub} · ${v.length} skills</p></div></div><p class="skc">${v.map(chip).join("")}</p></div>`}).join("");
 $("#tk").innerHTML=TOOLKIT.map(t=>`<div class="card tk2 rv"><span class="tki" style="background:${t.c};color:${t.dark?"#1f2a22":"#fff"}" aria-hidden="true">${t.m}</span><div><p class="tkn">${E(t.n)}</p><p class="mu sm">${E(t.u)}</p></div></div>`).join("");
 $("#ed").innerHTML=EDU.map((e,i)=>`<article class="edu rv"><span class="edot" aria-hidden="true"></span><div class="card ec">
 <div class="eimg" data-mono="${E(e.mono)}"><img src="${E(e.img)}" alt="${E(e.imgAlt)}" loading="lazy" onerror="this.remove()"><span class="ey">${E(e.y)}</span></div>
 <div class="eb2"><p class="est">${E(e.status)}</p><h3>${E(e.d)}</h3><p class="org">${E(e.s)}<span class="mu"> · ${E(e.l)}</span></p>${e.note?`<p class="mu">${E(e.note)}</p>`:""}
-${e.f?`<p class="ef">${e.f.map(chip).join("")}</p>`:""}${e.cert?`<button class="btn o sm2" data-cert="${i}">View certificate</button>`:""}</div></div></article>`).join("");
+${e.f?`<p class="ef">${e.f.map(chip).join("")}</p>`:""}${e.cert?`<button class="btn o sm2" data-cert="${i}" aria-label="View certificate: ${E(e.d)}">View certificate</button>`:""}</div></div></article>`).join("");
 $("#ed").onclick=ev=>{const b=ev.target.closest("[data-cert]");if(!b)return;const e=EDU[+b.dataset.cert],d=$("#certbox");
 d.querySelector("img").src=e.cert;d.querySelector("img").alt=e.d+" certificate, "+e.s;d.querySelector("h3").textContent=e.d;d.showModal()};
 $("#certbox").addEventListener("click",ev=>{if(ev.target.id==="certbox"||ev.target.closest(".cx"))$("#certbox").close()});
 if(SITE.testimonials.length){const t=$("#tm");t.hidden=false;t.innerHTML=`<div class="w"><h2>What Collaborators Say</h2><div class="g" style="margin-top:28px">${SITE.testimonials.map(x=>`<figure class="card">${x.photo?`<img src="${E(x.photo)}" alt="${E(x.name)}" width="48" height="48">`:""}<blockquote style="margin:8px 0">${E(x.quote)}</blockquote><figcaption><b>${E(x.name)}</b><br><span class="mu sm">${E(x.role)}, ${E(x.org)}</span></figcaption></figure>`).join("")}</div></div>`}
 
 /* projects grid + filters */
-const card=p=>`<article class="card pc"><a class="th${p.thumbnail?"":" nt"}" href="#project/${p.slug}" tabindex="-1" aria-hidden="true">${p.thumbnail?`<img src="${E(p.thumbnail)}" alt="" loading="lazy">`:`<span>${E((p.tools[0]||p.category||"Project").replace("Articulate ",""))}</span>`}</a>
-<p class="mu sm">${p.category?E(p.category):"Project details coming soon"}</p><h3>${E(p.title)}</h3><p class="mu">${p.description?E(p.description):"Full project details are being finalized and will be added soon."}</p>${p.tags.length?`<p class="tags">${p.tags.map(chip).join("")}</p>`:""}
-<p class="mu sm tools-line"><b>Tools:</b> ${p.tools.length?E(p.tools.join(", ")):"To be confirmed"}</p>
-<div class="acts"><a class="btn" href="#project/${p.slug}">View Project</a></div></article>`;
-let F="All";const grid=()=>{const a=PROJECTS.filter(p=>F==="All"||p.filters.includes(F));$("#pg").innerHTML=a.length?a.map(card).join(""):'<p class="mu">No projects in this category yet.</p>'};
-$("#fl").innerHTML=FILTERS.map(f=>`<button class="fb" aria-pressed="${f==="All"}">${f}</button>`).join("");
-$("#fl").onclick=e=>{const b=e.target.closest("button");if(!b)return;F=b.textContent;[...$("#fl").children].forEach(x=>x.setAttribute("aria-pressed",x===b));grid()};grid();
+const card=(p,g)=>{const tl=g&&g.tool?g.tool.toLowerCase():"",tags=p.tags.filter(t=>t.toLowerCase()!==tl),cat=(g&&g.tool?p.category.replace(new RegExp("^(Articulate )?"+g.tool+"( Course)?\\s*/?\\s*","i"),""):p.category)||tags[0]||p.category;return `<article class="card pc rv"><div class="th${p.thumbnail?"":" nt"}">${p.thumbnail?`<img src="${E(p.thumbnail)}" alt="" loading="lazy">`:`<span>${E((p.tools[0]||p.category||"Project").replace("Articulate ",""))}</span>`}</div>
+<div class="pcb"><p class="pcat">${E(cat||"Project")}</p><h3><a href="#project/${p.slug}">${E(p.title)}</a></h3><p class="mu">${E(p.description||"Full project details are being finalized.")}</p>${tags.filter(t=>t!==cat).length?`<p class="tags">${tags.filter(t=>t!==cat).slice(0,3).map(chip).join("")}</p>`:""}
+<span class="pgo" aria-hidden="true">View project <span>&rarr;</span></span></div></article>`};
+const spot=p=>`<article class="spot rv"><a class="spi" href="#project/${p.slug}/demo" tabindex="-1" aria-hidden="true"><img src="${E(p.spot.img)}" alt="" loading="lazy"><span class="spp"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Play</span></a>
+<div class="spb"><p class="eb">Featured project</p><h3>${E(p.title)}</h3><p class="mu">${E(p.description)}</p><ul class="hl">${p.spot.highlights.map(h=>`<li>${E(h)}</li>`).join("")}</ul>
+<p class="tags">${p.tags.slice(0,3).map(chip).join("")}</p><div class="acts"><a class="btn" href="#project/${p.slug}/demo">Try the simulation</a><a class="btn o" href="#project/${p.slug}">Read the case study</a></div></div></article>`;
+/* Storyline first, then Rise; this order is also used by Previous/Next on project pages */
+const GI=p=>{const i=GROUPS.findIndex(g=>p.filters.includes(g.tool));return i<0?99:i};PROJECTS.sort((a,b)=>GI(a)-GI(b));
+const OTHER=PROJECTS.filter(p=>GI(p)===99),GS=GROUPS.map(g=>({...g,list:PROJECTS.filter(p=>GI(p)===GROUPS.indexOf(g))})).filter(g=>g.list.length);
+if(OTHER.length)GS.push({id:"other-projects",title:"Other projects",sub:"More learning experiences",m:"+",c:"#4e7a5a",list:OTHER});
+const cnt=(n,u=["project","projects"])=>n+" "+(n===1?u[0]:u[1]);
+$("#pjn").innerHTML=GS.map(g=>`<a href="#${g.id}"><span class="tki" style="background:${g.c}" aria-hidden="true">${g.m}</span>${E(g.title)}<span class="pjc">${g.list.length}</span></a>`).join("");
+$("#pgroups").innerHTML=GS.map(g=>{const sp=g.list.filter(p=>p.spot),rest=g.list.filter(p=>!p.spot);
+ return `<div class="pgrp" id="${g.id}"><div class="pgh"><span class="tki" style="background:${g.c}" aria-hidden="true">${g.m}</span><div><h3>${E(g.title)}</h3><p class="mu sm">${E(g.sub)} · ${cnt(g.list.length,g.unit)}</p></div></div>
+${sp.map(spot).join("")}${rest.length?`${rest.length>1?'<p class="swipe" aria-hidden="true">Swipe to see more &rarr;</p>':""}<div class="g3" tabindex="0" aria-label="${E(g.title)}">${rest.map(p=>card(p,g)).join("")}</div>`:""}</div>`}).join("");
 
 /* embed viewer: iframe when embedUrl is set, placeholder otherwise */
 const embedSrc=u=>{let m;if(m=u.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=)([\w-]{11})/))return"https://www.youtube.com/embed/"+m[1];if(m=u.match(/vimeo\.com\/(\d+)/))return"https://player.vimeo.com/video/"+m[1];return u};
