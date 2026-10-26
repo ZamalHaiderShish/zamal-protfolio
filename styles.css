@@ -1,4 +1,4 @@
-:root{--ac:#1f3d2b;--ac-h:#163022;--gold:#c9a227;--gold-tx:#7e6110;--ac2:#4e7a5a;--wm-brown:#8a6f52;--wm-gold:#c9a227;--soft:#e8efe6;--tx:#1f2a22;--mu:#56635a;--bd:#e3e0d5;--bg:#f4f1e8;--page:#fcfbf7}
+:root{--ac:#1f3d2b;--ac-h:#163022;--gold:#c9a227;--gold-tx:#7e6110;--ac2:#4e7a5a;--wm-brown:#a88a68;--wm-gold:#c9a227;--wm-cact:#5b8a63;--wm-cact-dk:#3f6648;--wm-bloom:#e0694e;--wm-pink:#c9507c;--wm-sun:#e6b52e;--wm-date:#a8602a;--soft:#e8efe6;--tx:#1f2a22;--mu:#56635a;--bd:#e3e0d5;--bg:#f4f1e8;--page:#fcfbf7}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:76px}
 body{margin:0;font:16px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--tx);background:var(--page)}
 h1,h2,h3,p,ul,figure{margin:0}h1,h2,h3{line-height:1.15;letter-spacing:-.02em}ul{padding-left:20px}li{margin:4px 0}
@@ -38,12 +38,12 @@ footer{border-top:1px solid var(--bd);padding:40px 0;font-size:14px}.fw{display:
 .rv{opacity:0;transition:opacity .6s}.rv.in{opacity:1}
 .has-wm{position:relative;overflow:hidden;isolation:isolate}.has-wm>.w{position:relative;z-index:1}
 .wm{position:absolute;color:var(--ac2);pointer-events:none;z-index:0;height:auto}
-.wm-hero{right:-18px;bottom:-26px;width:230px;opacity:.3}
-.wm-about{right:18px;top:50%;transform:translateY(-50%);width:170px;opacity:.38}
-.wm-resume{right:28px;bottom:-10px;width:150px;opacity:.36}
-.wm-footer{right:4px;bottom:-14px;width:96px;opacity:.3}
-.wm-goals{left:22px;bottom:-16px;width:148px;opacity:.34}
-.wm-contact{left:20px;bottom:10px;width:124px;opacity:.34}
+.wm-hero{right:-6px;bottom:0;width:200px;opacity:.55}
+.wm-about{right:24px;top:50%;transform:translateY(-50%);width:160px;opacity:.55}
+.wm-resume{right:40px;bottom:-6px;width:150px;opacity:.55}
+.wm-footer{right:18px;bottom:6px;width:80px;opacity:.5}
+.wm-goals{left:22px;bottom:-6px;width:150px;opacity:.55}
+.wm-contact{left:20px;bottom:0;width:120px;opacity:.5}
 @media(max-width:1320px){#mb{display:block}#menu{display:none;position:absolute;top:68px;left:0;right:0;background:#fff;flex-direction:column;padding:12px 24px;border-bottom:1px solid var(--bd)}#menu.open{display:flex}.hcta{display:none}}
 @media(max-width:900px){.hg,.cg{grid-template-columns:1fr}.photo{max-width:320px}section{padding:64px 0}.wm{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}.rv{opacity:1}}

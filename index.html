@@ -17,7 +17,7 @@ RESUME: save your PDF as Zamal-Haider-Shish-Resume.pdf next to index.html (or ch
 PHOTO: keep zamal-profile.jpg in the same folder as index.html (the hero loads it by that relative name). The photo is used on this page only. To change it, replace that file.
 DEPLOY ON GITHUB PAGES: repo Settings > Pages > Deploy from a branch > main, / (root). File names are case-sensitive. Embed links must be https://.
 NAV: the same 9-item menu is written by hand in all three pages (Home, Bio, Goal Statement, Experience, Projects, Skills & Tools, Education, Resume, Contact). If you add or rename an item, change it in index.html, bio.html and goals.html. The header is measured to fit all 9 items + the View Resume button on one line down to an ~1321px window; below that it switches to the hamburger menu. If you add more nav items or a longer brand name later, re-check this at ~1280-1360px.
-WATERMARKS: the faint leaf/flower/palm shapes are decorative only (class "wm", built from the hidden <svg><defs> sprite near the top of <body>, which is the same block in all three pages). They are hidden on phone widths. Edit the --ac2 color variable in styles.css to retint them, or delete a .wm element to remove one.
+WATERMARKS: the soft desert plants (saguaro, prickly pear, ball cactus, tumbleweed, date palm) are decorative only (class "wm", built from the hidden <svg><defs> sprite near the top of <body>, which is the same block in all three pages). They are hidden on phone widths. Edit the --wm-* color variables in styles.css to retint them, or delete a .wm element to remove one.
 DEPLOY ON VERCEL: push this folder to GitHub > vercel.com/new > import the repo > Framework "Other", no build command > Deploy.
 If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 -->
@@ -36,43 +36,68 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 <a class="skip" href="#main">Skip to content</a>
 <svg aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
 <defs>
-<path id="frond" d="M0,0 C-7,-22 -7,-46 0,-64 C7,-46 7,-22 0,0 Z"/>
-<g id="wm-palm">
-  <path style="fill:var(--wm-brown)" d="M55,160 C50,130 46,100 50,70 C51,62 55,56 60,54 C65,56 69,62 70,70 C74,100 70,130 65,160 Z"/>
-  <g style="fill:var(--ac2)" transform="translate(60,54)">
-    <use href="#frond" transform="rotate(-85) scale(0.8)"/>
-    <use href="#frond" transform="rotate(-55) scale(0.95)"/>
-    <use href="#frond" transform="rotate(-28) scale(1.05)"/>
-    <use href="#frond" transform="rotate(0) scale(1.1)"/>
-    <use href="#frond" transform="rotate(28) scale(1.05)"/>
-    <use href="#frond" transform="rotate(55) scale(0.95)"/>
-    <use href="#frond" transform="rotate(85) scale(0.8)"/>
+<g id="wm-saguaro">
+  <g style="fill:var(--wm-brown)"><ellipse cx="30" cy="156" rx="12" ry="4"/><ellipse cx="92" cy="157" rx="9" ry="3"/></g>
+  <g style="fill:none;stroke:var(--wm-cact);stroke-linecap:round;stroke-width:15">
+    <path d="M54 104 H38 a9 9 0 0 1 -9 -9 V60"/><path d="M66 84 H82 a9 9 0 0 0 9 -9 V46"/>
   </g>
+  <rect x="49" y="22" width="22" height="136" rx="11" style="fill:var(--wm-cact)"/>
+  <g style="fill:none;stroke:var(--wm-cact-dk);stroke-width:1.6;stroke-linecap:round">
+    <path d="M56 32 V152"/><path d="M60 28 V154"/><path d="M64 32 V152"/><path d="M29 64 V92"/><path d="M91 50 V72"/>
+  </g>
+  <g style="fill:var(--wm-bloom)"><circle cx="54" cy="22" r="4.5"/><circle cx="64" cy="20" r="4.5"/><circle cx="91" cy="44" r="4"/></g>
+  <g style="fill:var(--wm-sun)"><circle cx="54" cy="22" r="1.6"/><circle cx="64" cy="20" r="1.6"/><circle cx="91" cy="44" r="1.4"/></g>
+  <g style="fill:none;stroke:var(--wm-cact);stroke-width:2;stroke-linecap:round"><path d="M14 158 q3 -9 7 -12"/><path d="M18 158 q-2 -8 -6 -10"/><path d="M100 158 q2 -7 6 -9"/></g>
 </g>
-<g id="wm-leaf">
-  <path style="stroke:var(--wm-brown)" d="M50,128 C50,98 46,72 53,42" fill="none" stroke-width="3" stroke-linecap="round"/>
-  <g style="fill:var(--ac2)">
-    <use href="#frond" transform="translate(49,100) rotate(-130) scale(0.62)"/>
-    <use href="#frond" transform="translate(47,70) rotate(125) scale(0.68)"/>
-    <use href="#frond" transform="translate(53,42) rotate(-8) scale(0.72)"/>
+<g id="wm-fig">
+  <ellipse cx="50" cy="106" rx="30" ry="3" style="fill:var(--wm-brown)"/>
+  <g style="fill:var(--wm-cact)">
+    <ellipse cx="50" cy="80" rx="17" ry="24"/>
+    <ellipse cx="29" cy="52" rx="13" ry="19" transform="rotate(-28 29 52)"/>
+    <ellipse cx="70" cy="48" rx="13" ry="19" transform="rotate(24 70 48)"/>
+    <ellipse cx="50" cy="40" rx="10" ry="15" transform="rotate(-6 50 40)"/>
   </g>
+  <g style="fill:var(--wm-cact-dk)"><circle cx="44" cy="72" r="1.3"/><circle cx="56" cy="78" r="1.3"/><circle cx="47" cy="90" r="1.3"/><circle cx="27" cy="50" r="1.2"/><circle cx="34" cy="60" r="1.2"/><circle cx="70" cy="44" r="1.2"/><circle cx="66" cy="56" r="1.2"/><circle cx="50" cy="36" r="1.2"/></g>
+  <g style="fill:var(--wm-pink)"><ellipse cx="44" cy="24" rx="3.2" ry="4.4"/><ellipse cx="80" cy="30" rx="3.2" ry="4.4" transform="rotate(20 80 30)"/><ellipse cx="17" cy="36" rx="3" ry="4.2" transform="rotate(-25 17 36)"/></g>
+  <g style="fill:var(--wm-bloom)"><circle cx="55" cy="23" r="5"/><circle cx="24" cy="32" r="4.5"/><circle cx="73" cy="27" r="4.5"/></g>
+  <g style="fill:var(--wm-sun)"><circle cx="55" cy="23" r="1.8"/><circle cx="24" cy="32" r="1.6"/><circle cx="73" cy="27" r="1.6"/></g>
 </g>
-<g id="wm-flower">
-  <path style="fill:var(--wm-brown)" d="M48,110 C48,90 49,65 50,55 C51,65 52,90 52,110 Z"/>
-  <g style="fill:var(--ac2)">
-    <use href="#frond" transform="translate(50,86) rotate(125) scale(0.42)"/>
-    <use href="#frond" transform="translate(50,70) rotate(-130) scale(0.42)"/>
+<g id="wm-ball">
+  <ellipse cx="54" cy="106" rx="36" ry="3" style="fill:var(--wm-brown)"/>
+  <circle cx="46" cy="74" r="30" style="fill:var(--wm-cact)"/>
+  <circle cx="82" cy="94" r="12" style="fill:var(--wm-cact)"/>
+  <g style="fill:none;stroke:var(--wm-cact-dk);stroke-width:1.5">
+    <ellipse cx="46" cy="74" rx="9" ry="30"/><ellipse cx="46" cy="74" rx="19" ry="30"/><ellipse cx="82" cy="94" rx="5" ry="12"/>
   </g>
-  <g transform="translate(50,32)">
-    <g style="fill:var(--wm-gold)">
-      <ellipse cx="0" cy="-16" rx="9" ry="15" transform="rotate(0)"/>
-      <ellipse cx="0" cy="-16" rx="9" ry="15" transform="rotate(72)"/>
-      <ellipse cx="0" cy="-16" rx="9" ry="15" transform="rotate(144)"/>
-      <ellipse cx="0" cy="-16" rx="9" ry="15" transform="rotate(216)"/>
-      <ellipse cx="0" cy="-16" rx="9" ry="15" transform="rotate(288)"/>
-    </g>
-    <circle r="7" style="fill:var(--wm-brown)"/>
+  <g style="fill:var(--wm-sun)" transform="translate(46 44)">
+    <ellipse cx="0" cy="-7" rx="3.6" ry="7"/><ellipse cx="0" cy="-7" rx="3.6" ry="7" transform="rotate(45)"/><ellipse cx="0" cy="-7" rx="3.6" ry="7" transform="rotate(-45)"/><ellipse cx="0" cy="-7" rx="3.6" ry="7" transform="rotate(90)"/><ellipse cx="0" cy="-7" rx="3.6" ry="7" transform="rotate(-90)"/>
   </g>
+  <circle cx="46" cy="44" r="3" style="fill:var(--wm-bloom)"/>
+  <g style="fill:var(--wm-pink)"><circle cx="82" cy="81" r="3.6"/></g>
+</g>
+<g id="wm-tumble">
+  <ellipse cx="54" cy="106" rx="30" ry="3" style="fill:var(--wm-brown);opacity:.6"/>
+  <g style="fill:none;stroke:var(--wm-brown);stroke-width:2;stroke-linecap:round">
+    <ellipse cx="54" cy="70" rx="32" ry="30"/>
+    <ellipse cx="54" cy="70" rx="32" ry="16" transform="rotate(30 54 70)"/>
+    <ellipse cx="54" cy="70" rx="32" ry="16" transform="rotate(-35 54 70)"/>
+    <ellipse cx="54" cy="70" rx="14" ry="30" transform="rotate(15 54 70)"/>
+    <ellipse cx="54" cy="70" rx="20" ry="22" transform="rotate(60 54 70)"/>
+    <path d="M30 56 q20 10 42 -6"/><path d="M28 82 q26 -2 48 12"/><path d="M40 44 q12 26 4 52"/><path d="M68 44 q-10 24 0 50"/>
+  </g>
+  <g style="fill:none;stroke:var(--wm-brown);stroke-width:2;stroke-linecap:round;opacity:.7"><path d="M4 74 H16"/><path d="M8 86 H18"/><path d="M2 98 H14"/></g>
+</g>
+<g id="wm-date">
+  <ellipse cx="52" cy="126" rx="20" ry="3" style="fill:var(--wm-brown)"/>
+  <path d="M47 126 C49 96 50 66 52 38 L58 38 C57 66 57 96 59 126 Z" style="fill:var(--wm-brown)"/>
+  <g style="fill:none;stroke:var(--wm-cact-dk);stroke-width:1.2;opacity:.45"><path d="M49 112 l5 -3 l5 3"/><path d="M49 98 l5 -3 l5 3"/><path d="M50 84 l5 -3 l4 3"/><path d="M50 70 l5 -3 l4 3"/><path d="M51 56 l4 -3 l4 3"/></g>
+  <g style="fill:var(--wm-cact)">
+    <path d="M55 36 Q30 18 4 40 Q30 28 55 40 Z"/><path d="M55 36 Q80 18 98 42 Q78 28 55 40 Z"/>
+    <path d="M55 34 Q38 4 12 10 Q38 12 54 38 Z"/><path d="M55 34 Q72 4 92 12 Q70 12 56 38 Z"/>
+    <path d="M55 34 Q54 10 60 0 Q60 16 57 36 Z"/>
+    <path d="M55 38 Q34 40 18 62 Q36 46 55 42 Z"/><path d="M55 38 Q76 40 88 62 Q72 46 55 42 Z"/>
+  </g>
+  <g style="fill:var(--wm-date)"><circle cx="46" cy="46" r="2.6"/><circle cx="43" cy="51" r="2.6"/><circle cx="48" cy="52" r="2.6"/><circle cx="45" cy="57" r="2.4"/><circle cx="64" cy="46" r="2.6"/><circle cx="67" cy="51" r="2.6"/><circle cx="62" cy="52" r="2.6"/><circle cx="65" cy="57" r="2.4"/></g>
 </g>
 </defs>
 </svg>
@@ -80,7 +105,7 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 <nav id="menu" aria-label="Main"><a href="#home">Home</a><a href="bio.html">Bio</a><a href="goals.html">Goal Statement</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills &amp; Tools</a><a href="#education">Education</a><a href="#resume">Resume</a><a href="#contact">Contact</a></nav><a class="btn hcta" href="#resume">View Resume</a>
 <button id="mb" aria-label="Open menu" aria-expanded="false" aria-controls="menu">&#9776;</button></div></header>
 <main id="main">
-<section id="home" class="hero has-wm"><svg class="wm wm-hero" viewBox="0 0 120 160" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-palm"/></svg><div class="w hg"><div>
+<section id="home" class="hero has-wm"><svg class="wm wm-hero" viewBox="0 0 120 160" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-saguaro"/></svg><div class="w hg"><div>
 <p class="eb">Instructional Designer &amp; eLearning Developer</p>
 <h1>Designing Meaningful Learning Experiences Through Technology</h1>
 <p class="lead">I combine instructional design, technology, multimedia development, and software implementation experience to create practical, engaging, and learner-centered digital learning experiences.</p>
@@ -105,12 +130,12 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 <section id="education" class="alt"><div class="w"><h2>Education</h2><p class="lead">From software engineering to instructional design and technology.</p><div class="etl" id="ed"></div></div></section>
 <dialog id="certbox" aria-label="Certificate"><div class="cbx"><div class="cbh"><h3></h3><button class="btn o cx" aria-label="Close certificate">Close</button></div><img alt=""></div></dialog>
 
-<section id="resume" class="has-wm"><svg class="wm wm-resume" viewBox="0 0 100 110" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-flower"/></svg><div class="w"><h2>Resume</h2><p class="lead">Want a quick overview of my experience, education, and skills?</p>
+<section id="resume" class="has-wm"><svg class="wm wm-resume" viewBox="0 0 100 110" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-ball"/></svg><div class="w"><h2>Resume</h2><p class="lead">Want a quick overview of my experience, education, and skills?</p>
 <div class="acts"><a class="btn" id="vr" target="_blank" rel="noopener">View Resume</a><a class="btn o" id="dl2" download>Download Resume</a></div></div></section>
 
 <section id="tm" class="alt" hidden></section>
 
-<section id="contact" class="alt has-wm"><svg class="wm wm-contact" viewBox="0 0 100 110" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-flower"/></svg><div class="w cg"><div><h2>Let's Connect</h2>
+<section id="contact" class="alt has-wm"><svg class="wm wm-contact" viewBox="0 0 100 130" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-date"/></svg><div class="w cg"><div><h2>Let's Connect</h2>
 <p class="mu" style="margin-bottom:24px">I'm always interested in opportunities to create meaningful learning experiences, collaborate on instructional design projects, and continue growing in the field.</p>
 <p><b>Email:</b> <a id="em"></a></p><p><b>LinkedIn:</b> <a id="li" target="_blank" rel="noopener">Connect on LinkedIn</a></p><p><b>Location:</b> Florida, United States</p>
 <div class="acts"><a class="btn" id="em2">Email Me</a><a class="btn o" id="li2" target="_blank" rel="noopener">LinkedIn</a></div></div>
@@ -119,7 +144,7 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 <button class="btn" type="submit">Send Message</button><p class="mu sm" style="margin-top:12px">This opens your email app with your message filled in.</p></form></div></section>
 </main>
 
-<footer class="has-wm"><svg class="wm wm-footer" viewBox="0 0 120 160" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-palm"/></svg><div class="w fw"><div><b>Zamal Haider Shish</b><br><span class="mu">Instructional Designer &amp; eLearning Developer</span><p class="mu" style="margin-top:8px">&copy; 2026 Zamal Haider Shish. All rights reserved.</p></div>
+<footer class="has-wm"><svg class="wm wm-footer" viewBox="0 0 100 110" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-tumble"/></svg><div class="w fw"><div><b>Zamal Haider Shish</b><br><span class="mu">Instructional Designer &amp; eLearning Developer</span><p class="mu" style="margin-top:8px">&copy; 2026 Zamal Haider Shish. All rights reserved.</p></div>
 <div><nav aria-label="Footer"><a href="bio.html">Bio</a><a href="goals.html">Goal Statement</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#resume">Resume</a><a href="#contact">Contact</a></nav>
 <p class="ln" style="margin-top:12px"><a id="fe" aria-label="Email" href="#contact">Email</a><a id="fl2" aria-label="LinkedIn" href="#contact" target="_blank" rel="noopener">LinkedIn</a></p></div></div></footer>
 <div id="cs" role="dialog" aria-modal="true" aria-label="Project case study" tabindex="-1"></div>
