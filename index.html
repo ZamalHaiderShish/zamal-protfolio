@@ -102,7 +102,8 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 <section id="skills"><div class="w"><h2>Skills &amp; Tools</h2><p class="lead">Grouped by what I use them for.</p><div class="g" id="sk"></div>
 <div class="tools"><h3>My Toolkit</h3><div class="g" id="tk"></div></div></div></section>
 
-<section id="education" class="alt"><div class="w"><h2>Education</h2><div class="ex" id="ed" style="margin-top:28px"></div></div></section>
+<section id="education" class="alt"><div class="w"><h2>Education</h2><p class="lead">From software engineering to instructional design and technology.</p><div class="etl" id="ed"></div></div></section>
+<dialog id="certbox" aria-label="Certificate"><div class="cbx"><div class="cbh"><h3></h3><button class="btn o cx" aria-label="Close certificate">Close</button></div><img alt=""></div></dialog>
 
 <section id="resume" class="has-wm"><svg class="wm wm-resume" viewBox="0 0 100 110" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-flower"/></svg><div class="w"><h2>Resume</h2><p class="lead">Want a quick overview of my experience, education, and skills?</p>
 <div class="acts"><a class="btn" id="vr" target="_blank" rel="noopener">View Resume</a><a class="btn o" id="dl2" download>Download Resume</a></div></div></section>
@@ -198,8 +199,19 @@ const SKILLS={"Instructional Design":["ADDIE","Learner Analysis","Learning Objec
 "Professional":["ERP Implementation","Software Training","Client Communication","Project Coordination","Requirement Analysis","Business Process Analysis","Stakeholder Collaboration"],
 "Emerging Interests":["Artificial Intelligence","Virtual Reality","Learning Analytics","UX / Learner Experience","Gamification"]};
 const TOOLKIT=["Articulate Storyline 360","Articulate Rise 360","Microsoft PowerPoint","Canva","Learning Management Systems","Generative AI Tools","HTML / CSS / JavaScript","Python"];
-const EDU=[{d:"M.S. in Instructional Design & Technology",s:"The University of Tampa",l:"Tampa, Florida",y:"Expected 2026",f:["Instructional Design","Learning Theory","eLearning Development","Multimedia","Learning Technology","Artificial Intelligence","UX / LX","Professional Portfolio Development"]},
-{d:"Bachelor in Software Engineering with Multimedia",s:"Limkokwing University",l:"Malaysia",y:"2016 to 2018"},{d:"Foundation in Information Technology",s:"Limkokwing University",l:"Malaysia",y:"2013 to 2014"}];
+const EDU=[
+{d:"M.S. in Instructional Design & Technology",s:"The University of Tampa",l:"Tampa, Florida, USA",y:"Expected 2026",status:"In progress",mono:"UT",
+ img:"education/ut-campus.jpg",imgAlt:"Plant Hall at The University of Tampa",
+ note:"Graduate study in designing, developing, and evaluating technology-enhanced learning.",
+ f:["Instructional Design","Learning Theory","eLearning Development","Multimedia","Learning Technology","Artificial Intelligence","UX / LX","Professional Portfolio Development"]},
+{d:"Bachelor of Science (Hons) in Software Engineering with Multimedia",s:"Limkokwing University of Creative Technology",l:"Cyberjaya, Malaysia",y:"2016 to 2018",status:"Conferred July 2018",mono:"LU",
+ img:"education/limkokwing-campus.jpg",imgAlt:"Limkokwing University of Creative Technology campus",
+ note:"Software engineering combined with multimedia design, the foundation for my work in learning technology.",
+ cert:"education/bachelor-certificate.jpg",f:["Software Engineering","Multimedia","Programming","Interface Design"]},
+{d:"Foundation in Information Technology",s:"Limkokwing University of Creative Technology",l:"Cyberjaya, Malaysia",y:"2013 to 2014",status:"Awarded August 2014",mono:"LU",
+ img:"education/limkokwing-campus.jpg",imgAlt:"Limkokwing University of Creative Technology campus",
+ note:"One-year pre-university program in information technology, completed with full credits.",
+ cert:"education/foundation-certificate.jpg"}];
 const PHIL=[["Understand the Learner","Start with the learner, their needs, environment, prior knowledge, and performance goals."],["Design with Purpose","Every activity, interaction, and piece of content should support a clear learning objective."],["Make Learning Practical","Connect instruction to realistic tasks, decisions, and workplace situations."],["Evaluate and Improve","Observe how learners interact with the experience, collect feedback, and improve the design."]];
 const CRED=["M.S. Instructional Design & Technology","Articulate 360","Storyline 360","Rise 360","ERP Training & Implementation"];
 /* ===== END EDIT: everything below is layout and behavior ===== */
@@ -218,7 +230,13 @@ $("#ph4").innerHTML=PHIL.map(p=>`<div class="card rv"><h3>${p[0]}</h3><p class="
 $("#ex").innerHTML=EXP.map(x=>`<article class="card rv"><div class="eh"><h3>${E(x.role)}</h3><span class="mu sm">${E(x.dates)}</span></div><p class="org">${E(x.org)} ${x.tag?chip(x.tag):""}</p>${list(x.pts)}</article>`).join("");
 $("#sk").innerHTML=Object.entries(SKILLS).map(([k,v])=>`<div class="card rv"><h3>${k}</h3><p>${v.map(chip).join("")}</p></div>`).join("");
 $("#tk").innerHTML=TOOLKIT.map(t=>`<div class="card tk rv">${t}</div>`).join("");
-$("#ed").innerHTML=EDU.map(e=>`<article class="card rv"><h3>${E(e.d)}</h3><p class="org">${E(e.s)}, ${E(e.l)}. ${E(e.y)}</p>${e.f?`<p>${e.f.map(chip).join("")}</p>`:""}</article>`).join("");
+$("#ed").innerHTML=EDU.map((e,i)=>`<article class="edu rv"><span class="edot" aria-hidden="true"></span><div class="card ec">
+<div class="eimg" data-mono="${E(e.mono)}"><img src="${E(e.img)}" alt="${E(e.imgAlt)}" loading="lazy" onerror="this.remove()"><span class="ey">${E(e.y)}</span></div>
+<div class="eb2"><p class="est">${E(e.status)}</p><h3>${E(e.d)}</h3><p class="org">${E(e.s)}<span class="mu"> · ${E(e.l)}</span></p>${e.note?`<p class="mu">${E(e.note)}</p>`:""}
+${e.f?`<p class="ef">${e.f.map(chip).join("")}</p>`:""}${e.cert?`<button class="btn o sm2" data-cert="${i}">View certificate</button>`:""}</div></div></article>`).join("");
+$("#ed").onclick=ev=>{const b=ev.target.closest("[data-cert]");if(!b)return;const e=EDU[+b.dataset.cert],d=$("#certbox");
+d.querySelector("img").src=e.cert;d.querySelector("img").alt=e.d+" certificate, "+e.s;d.querySelector("h3").textContent=e.d;d.showModal()};
+$("#certbox").addEventListener("click",ev=>{if(ev.target.id==="certbox"||ev.target.closest(".cx"))$("#certbox").close()});
 if(SITE.testimonials.length){const t=$("#tm");t.hidden=false;t.innerHTML=`<div class="w"><h2>What Collaborators Say</h2><div class="g" style="margin-top:28px">${SITE.testimonials.map(x=>`<figure class="card">${x.photo?`<img src="${E(x.photo)}" alt="${E(x.name)}" width="48" height="48">`:""}<blockquote style="margin:8px 0">${E(x.quote)}</blockquote><figcaption><b>${E(x.name)}</b><br><span class="mu sm">${E(x.role)}, ${E(x.org)}</span></figcaption></figure>`).join("")}</div></div>`}
 
 /* projects grid + filters */
