@@ -2,11 +2,12 @@
 <!--
 HOW TO USE
 FILES: keep all of these together in the same folder (the repo root on GitHub Pages):
-  index.html (home), bio.html, goals.html, styles.css (shared look), site.js (shared behavior + your email, LinkedIn and resume links),
+  index.html (home), bio.html, goals.html, pos.html (Program of Study), styles.css (shared look), site.js (shared behavior + your email, LinkedIn and resume links),
   zamal-profile.jpg, Zamal-Haider-Shish-Resume.pdf
 LINKS: your email, LinkedIn URL and resume file name are set once, in the SITE block at the top of site.js. They update on every page.
 HOME CONTENT: projects, experience, skills and education are in the script block marked "EDIT HERE" near the bottom of this file. The hero text is plain HTML.
 BIO and GOAL STATEMENT: bio.html and goals.html are plain HTML. Edit their text directly in those files.
+PROGRAM OF STUDY: pos.html. The course list (title, term, credits, instructor, description) is in the script block marked "EDIT HERE" near the bottom of that file.
 RUN LOCALLY: open index.html, or run `npx serve .` in this folder.
 RISE 360 PROJECT: Rise > Share > copy public link > paste into that project's embedUrl.
 STORYLINE 360 PROJECT: Publish > Web, upload the output folder to a public S3 bucket, paste https://YOUR-BUCKET.s3.amazonaws.com/project/story.html into embedUrl.
@@ -16,7 +17,7 @@ LEADING WITH EMOTIONAL INTELLIGENCE: this project is in PROJECTS with its catego
 RESUME: save your PDF as Zamal-Haider-Shish-Resume.pdf next to index.html (or change SITE.resume in site.js).
 PHOTO: keep zamal-profile.jpg in the same folder as index.html (the hero loads it by that relative name). The photo is used on this page only. To change it, replace that file.
 DEPLOY ON GITHUB PAGES: repo Settings > Pages > Deploy from a branch > main, / (root). File names are case-sensitive. Embed links must be https://.
-NAV: the same 7-item menu is written by hand in all three pages (Bio, Goal Statement, Experience, Projects, Skills & Tools, Education, Contact). Your name (top left) links home and the View Resume button opens the PDF. If you add or rename an item, change it in index.html, bio.html and goals.html. The menu fits on one line down to an ~1100px window; below that it switches to the hamburger menu.
+NAV: the same 8-item menu is written by hand in all four pages (Bio, Goal Statement, Program of Study, Experience, Projects, Skills & Tools, Education, Contact). Your name (top left) links home and the View Resume button opens the PDF. If you add or rename an item, change it in index.html, bio.html, goals.html and pos.html. The menu fits on one line down to an ~1280px window; below that it switches to the hamburger menu.
 WATERMARKS: the soft desert plants (saguaro, prickly pear, ball cactus, tumbleweed, date palm) are decorative only (class "wm", built from the hidden <svg><defs> sprite near the top of <body>, which is the same block in all three pages). They are hidden on phone widths. Edit the --wm-* color variables in styles.css to retint them, or delete a .wm element to remove one.
 DEPLOY ON VERCEL: push this folder to GitHub > vercel.com/new > import the repo > Framework "Other", no build command > Deploy.
 If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
@@ -106,7 +107,7 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 </defs>
 </svg>
 <header id="nav"><div class="w nb"><a class="brand" href="#home">Zamal Haider Shish</a>
-<nav id="menu" aria-label="Main"><a href="bio.html">Bio</a><a href="goals.html">Goal Statement</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills &amp; Tools</a><a href="#education">Education</a><a href="#contact">Contact</a></nav><a class="btn hcta" href="#resume">View Resume</a>
+<nav id="menu" aria-label="Main"><a href="bio.html">Bio</a><a href="goals.html">Goal Statement</a><a href="pos.html">Program of Study</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills &amp; Tools</a><a href="#education">Education</a><a href="#contact">Contact</a></nav><a class="btn hcta" href="#resume">View Resume</a>
 <button id="mb" aria-label="Open menu" aria-expanded="false" aria-controls="menu">&#9776;</button></div></header>
 <main id="main">
 <section id="home" class="hero has-wm"><svg class="wm wm-hero" viewBox="0 0 120 160" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-saguaro"/></svg><div class="w hg"><div>
@@ -150,7 +151,7 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 </main>
 
 <footer class="has-wm"><svg class="wm wm-footer" viewBox="0 0 100 110" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-tumble"/></svg><div class="w fw"><div><b>Zamal Haider Shish</b><br><span class="mu">Instructional Designer &amp; eLearning Developer</span><p class="mu" style="margin-top:8px">&copy; 2026 Zamal Haider Shish. All rights reserved.</p></div>
-<div><nav aria-label="Footer"><a href="bio.html">Bio</a><a href="goals.html">Goal Statement</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#resume">Resume</a><a href="#contact">Contact</a></nav>
+<div><nav aria-label="Footer"><a href="bio.html">Bio</a><a href="goals.html">Goal Statement</a><a href="pos.html">Program of Study</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#resume">Resume</a><a href="#contact">Contact</a></nav>
 <p class="ln" style="margin-top:12px"><a id="fe" aria-label="Email" href="#contact">Email</a><a id="fl2" aria-label="LinkedIn" href="#contact" target="_blank" rel="noopener">LinkedIn</a></p></div></div></footer>
 <div id="cs" role="dialog" aria-modal="true" aria-label="Project case study" tabindex="-1"></div>
 
@@ -207,6 +208,17 @@ P({slug:"science-of-nutrition",title:"The Science Behind Nutrition",category:"Ri
   experience:"Labeled graphics, accordions, tabs, flashcards, a sorting activity, embedded media, and multiple-choice, fill-in and matching knowledge checks."},
  thumbnail:"nutrition/cover.jpg",
  embedUrl:"nutrition/index.html"}),
+P({slug:"cip-theory-presentation",title:"How Memory Works: Cognitive Information Processing Theory",category:"Interactive Presentation / Learning Theory",
+ description:"A hand-coded, animated presentation and class activity that teaches Cognitive Information Processing theory, built for EME 602 at The University of Tampa.",
+ tools:["HTML, CSS and JavaScript","Reveal.js","SVG illustration and animation"],tags:["Learning Theory","Interactive Presentation","Web Development","Animation"],filters:["Instructional Design","Higher Education"],
+ audience:"Graduate students in EME 602: Theories of Learning and Cognition for Instruction.",
+ role:"Instructional designer, presenter and developer",process:[],
+ caseStudy:{
+  objectives:["Explain how information moves from sensory memory to working memory to long-term memory","Describe the roles of attention, pattern recognition, encoding and retrieval","Apply six instructional principles drawn from the theory","Compare the theory with behaviorism, constructivism, situated cognition and connectionism"],
+  decisions:["The deck applies the principles it teaches: one main idea per slide, color to direct attention, and stories that connect to what the audience already knows","Each slide opens in parts, so an idea appears only when it is discussed","Custom illustrations and short animated stories carry the ideas in place of long text","A two-round video activity lets the class feel the limits of attention first, then try three memory strategies and compare their scores"],
+  experience:"An animated slide deck with a light and dark theme, embedded short videos, click-through question and answer cards, a score card for the activity, and speaker notes. Click inside the deck, then use the arrow keys or swipe to move through the slides."},
+ thumbnail:"cip-presentation/cover.jpg",
+ embedUrl:"cip-presentation/index.html"}),
 P({slug:"addie-model",title:"Introduction to the ADDIE Model",category:"Rise 360 / Microlearning",
  description:"A self-paced Rise 360 microlearning course that introduces university students to the five phases of the ADDIE instructional design model.",
  tools:["Articulate Rise 360","Video and audio narration"],tags:["Rise 360","ADDIE","Microlearning","Video-Based Learning"],filters:["Rise 360","Instructional Design","Higher Education"],
@@ -246,7 +258,7 @@ const SKI={"Instructional Design":["compass","How I plan learning"],"eLearning D
 const ICO={compass:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',play:'<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M10 8.5v5l4-2.5z"/><path d="M8 21h8M12 17v4"/>',code:'<path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/>',briefcase:'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>',spark:'<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6"/>'};
 const svg=k=>`<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">${ICO[k]}</svg>`;
 const EDU=[
-{d:"M.S. in Instructional Design & Technology",s:"The University of Tampa",l:"Tampa, Florida, USA",y:"Expected 2026",status:"In progress",mono:"UT",
+{d:"M.S. in Instructional Design & Technology",s:"The University of Tampa",l:"Tampa, Florida, USA",y:"Expected 2026",status:"In progress",mono:"UT",pos:"pos.html",
  img:"education/ut-campus.jpg",imgAlt:"Plant Hall at The University of Tampa",
  note:"Graduate study in designing, developing, and evaluating technology-enhanced learning.",
  f:["Instructional Design","Learning Theory","eLearning Development","Multimedia","Learning Technology","Artificial Intelligence","UX / LX","Professional Portfolio Development"]},
@@ -283,7 +295,7 @@ $("#tk").innerHTML=TOOLKIT.map(t=>`<div class="card tk2 rv"><span class="tki" st
 $("#ed").innerHTML=EDU.map((e,i)=>`<article class="edu rv"><span class="edot" aria-hidden="true"></span><div class="card ec">
 <div class="eimg" data-mono="${E(e.mono)}"><img src="${E(e.img)}" alt="${E(e.imgAlt)}" loading="lazy" onerror="this.remove()"><span class="ey">${E(e.y)}</span></div>
 <div class="eb2"><p class="est">${E(e.status)}</p><h3>${E(e.d)}</h3><p class="org">${E(e.s)}<span class="mu"> · ${E(e.l)}</span></p>${e.note?`<p class="mu">${E(e.note)}</p>`:""}
-${e.f?`<p class="ef">${e.f.map(chip).join("")}</p>`:""}${e.cert?`<button class="btn o sm2" data-cert="${i}" aria-label="View certificate: ${E(e.d)}">View certificate</button>`:""}</div></div></article>`).join("");
+${e.f?`<p class="ef">${e.f.map(chip).join("")}</p>`:""}${e.pos?`<a class="btn o sm2" href="${E(e.pos)}">View program of study</a>`:""}${e.cert?`<button class="btn o sm2" data-cert="${i}" aria-label="View certificate: ${E(e.d)}">View certificate</button>`:""}</div></div></article>`).join("");
 $("#ed").onclick=ev=>{const b=ev.target.closest("[data-cert]");if(!b)return;const e=EDU[+b.dataset.cert],d=$("#certbox");
 d.querySelector("img").src=e.cert;d.querySelector("img").alt=e.d+" certificate, "+e.s;d.querySelector("h3").textContent=e.d;d.showModal()};
 $("#certbox").addEventListener("click",ev=>{if(ev.target.id==="certbox"||ev.target.closest(".cx"))$("#certbox").close()});
