@@ -254,3 +254,18 @@ h1,h2,.cw .csh h2{font-family:var(--serif);font-weight:600;letter-spacing:-.01em
  .post td{font-size:14px;line-height:1.7}.post td:before{content:attr(data-l) ": ";color:var(--mu)}
 }
 @media(max-width:480px){.posum{grid-template-columns:1fr 1fr;gap:12px}.posum li{padding:16px 18px}}
+
+/* Design artifacts: a document's cover page beside its annotation */
+#design{padding-bottom:48px}#design+#projects{padding-top:48px}
+.dlist{display:grid;gap:24px}
+.dc{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:36px;align-items:start}
+.dcv{display:block;aspect-ratio:8.5/11;background:#fff;border:1px solid var(--bd);border-radius:8px;overflow:hidden;box-shadow:0 12px 28px rgba(31,61,43,.12);transition:transform .2s}
+.dcv:hover{transform:translateY(-3px)}
+.dcv img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.dcb h3{font-family:var(--serif);font-size:24px;margin:6px 0 10px}
+.dc .facts{grid-template-columns:repeat(2,minmax(0,1fr));margin:18px 0 16px}
+@media(max-width:760px){.dc{grid-template-columns:1fr;gap:22px}.dcv{max-width:220px}.dc .facts{grid-template-columns:1fr}}
+
+/* course label under a project's category */
+.pcrs{font-size:13px;line-height:1.4;color:var(--mu);margin:-2px 0 8px}
+.spb .pcrs{color:rgba(255,255,255,.72)}

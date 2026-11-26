@@ -107,7 +107,7 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 </defs>
 </svg>
 <header id="nav"><div class="w nb"><a class="brand" href="#home">Zamal Haider Shish</a>
-<nav id="menu" aria-label="Main"><a href="bio.html">Bio</a><a href="goals.html">Goal Statement</a><a href="pos.html">Program of Study</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills &amp; Tools</a><a href="#education">Education</a><a href="#contact">Contact</a></nav><a class="btn hcta" href="#resume">View Resume</a>
+<nav id="menu" aria-label="Main"><a href="bio.html">Bio</a><a href="goals.html">Goal Statement</a><a href="pos.html">Program of Study</a><a href="#experience">Experience</a><a href="#design">Design Artifacts</a><a href="#projects">Projects</a><a href="#skills">Skills &amp; Tools</a><a href="#education">Education</a><a href="#contact">Contact</a></nav><a class="btn hcta" href="#resume">View Resume</a>
 <button id="mb" aria-label="Open menu" aria-expanded="false" aria-controls="menu">&#9776;</button></div></header>
 <main id="main">
 <section id="home" class="hero has-wm"><svg class="wm wm-hero" viewBox="0 0 120 160" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-saguaro"/></svg><div class="w hg"><div>
@@ -124,6 +124,10 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 
 
 <section id="experience" class="has-wm"><svg class="wm wm-exp" viewBox="0 0 100 110" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-ball"/></svg><div class="w"><h2>Experience</h2><p class="lead">From ERP implementation and user training to instructional design.</p><div class="ex" id="ex"></div></div></section>
+
+<section id="design" class="alt"><div class="w"><h2>Design Artifacts</h2>
+<p class="lead">Analysis and design documents that show how I study a learning need and plan the solution before anything is built.</p>
+<div class="dlist" id="dg"></div></div></section>
 
 <section id="projects" class="alt"><div class="w"><h2>Projects</h2>
 <p class="lead">Interactive learning I have designed and built, grouped by the tool I built it in.</p>
@@ -151,7 +155,7 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 </main>
 
 <footer class="has-wm"><svg class="wm wm-footer" viewBox="0 0 100 110" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-tumble"/></svg><div class="w fw"><div><b>Zamal Haider Shish</b><br><span class="mu">Instructional Designer &amp; eLearning Developer</span><p class="mu" style="margin-top:8px">&copy; 2026 Zamal Haider Shish. All rights reserved.</p></div>
-<div><nav aria-label="Footer"><a href="bio.html">Bio</a><a href="goals.html">Goal Statement</a><a href="pos.html">Program of Study</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#resume">Resume</a><a href="#contact">Contact</a></nav>
+<div><nav aria-label="Footer"><a href="bio.html">Bio</a><a href="goals.html">Goal Statement</a><a href="pos.html">Program of Study</a><a href="#design">Design Artifacts</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#resume">Resume</a><a href="#contact">Contact</a></nav>
 <p class="ln" style="margin-top:12px"><a id="fe" aria-label="Email" href="#contact">Email</a><a id="fl2" aria-label="LinkedIn" href="#contact" target="_blank" rel="noopener">LinkedIn</a></p></div></div></footer>
 <div id="cs" role="dialog" aria-modal="true" aria-label="Project case study" tabindex="-1"></div>
 
@@ -161,7 +165,7 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 const P=o=>({thumbnail:"",embedUrl:"",externalUrl:"",audience:"",problem:"",solution:"",role:"Instructional designer and eLearning developer",process:["Analyze","Design","Develop","Implement","Evaluate"],outcome:"",caseStudy:{},featured:true,...o});
 // caseStudy: {objectives:[], decisions:[], experience:"", evaluation:"", lessons:"", screenshots:[]}  // REPLACE WITH PROJECT SCREENSHOTS
 const PROJECTS=[
-P({slug:"leading-with-emotional-intelligence",title:"Leading with Emotional Intelligence",category:"Rise 360 Course / Team MOOC",
+P({slug:"leading-with-emotional-intelligence",title:"Leading with Emotional Intelligence",course:"EME 613: Open Learning Environments and Artificial Intelligence",category:"Rise 360 Course / Team MOOC",
  description:"A self-paced, team-built Rise 360 course that helps learners build emotional intelligence through short, practical lessons on personal and social competence.",
  thumbnail:"emotional-intelligence/assets/3182749.jpg",
  tools:["Articulate Rise 360","Generative AI (images and narration)"],
@@ -173,7 +177,7 @@ P({slug:"leading-with-emotional-intelligence",title:"Leading with Emotional Inte
   decisions:["Structured into Personal Competence and Social Competence sections","Short, chunked lessons with plain language to reduce cognitive load","Keyboard-friendly navigation and no timed interactions","Audio narration to support ESL and auditory learners"],
   experience:"Narrated lessons, videos, knowledge checks, flashcards, sorting and matching activities, scenarios and reflection prompts, ending with a final assessment and certificate of completion."},
  embedUrl:"emotional-intelligence/index.html"}),
-P({slug:"retail-management-course",title:"Retail Management Course Redesign",category:"Rise 360 / Instructional Design",description:"Redesign and improvement of Retail Management learning content created during an instructional design internship.",tools:["Articulate Rise 360","Canva or multimedia tools","Instructional design process"],tags:["Course Design","Rise 360","Higher Education","UX","Assessment"],filters:["Rise 360","Instructional Design","Higher Education"],role:"Instructional design intern",
+P({slug:"retail-management-course",title:"Retail Management Course Redesign",course:"EME 650: Field Internship in Instructional Design and Technology",category:"Rise 360 / Instructional Design",description:"Redesign and improvement of Retail Management learning content created during an instructional design internship.",tools:["Articulate Rise 360","Canva or multimedia tools","Instructional design process"],tags:["Course Design","Rise 360","Higher Education","UX","Assessment"],filters:["Rise 360","Instructional Design","Higher Education"],role:"Instructional design intern",
  audience:"Undergraduate students in BMKT 415 – Retailing Management.",
  caseStudy:{
   objectives:["Identify retailing activities and how retailers create value","Compare types of retailers","Explain digital, multichannel and omnichannel retailing","Analyze consumer buying behavior"],
@@ -181,7 +185,7 @@ P({slug:"retail-management-course",title:"Retail Management Course Redesign",cat
   experience:"Learners move through accordions, tabs, process interactions, labeled graphics, flashcards and embedded media in each lesson."},
  thumbnail:"retail-management/cover.jpg",
  embedUrl:"retail-management/index.html"}),
-P({slug:"email-communication-skills",title:"Professional Email Communication for Workplace Success",category:"Rise 360 Course",tools:["Articulate Rise 360"],tags:["Corporate Training","Communication","Rise 360","Microlearning"],filters:["Rise 360","Corporate Training"],
+P({slug:"email-communication-skills",title:"Professional Email Communication for Workplace Success",course:"EME 620: Introduction to Systematic Instructional Design",category:"Rise 360 Course",tools:["Articulate Rise 360"],tags:["Corporate Training","Communication","Rise 360","Microlearning"],filters:["Rise 360","Corporate Training"],
  description:"Interactive Rise 360 training that teaches employees to write, respond to, and manage professional emails in a corporate setting.",
  audience:"Employees who communicate with clients and colleagues by email, especially those new to corporate settings.",
  caseStudy:{
@@ -190,7 +194,7 @@ P({slug:"email-communication-skills",title:"Professional Email Communication for
   experience:"Labeled graphics, tabs, accordions, a timeline, a sorting activity, an Outlook video walkthrough, and multiple-choice and matching knowledge checks."},
  thumbnail:"email-communication/cover.jpg",
  embedUrl:"email-communication/index.html"}),
-P({slug:"disaster-response-simulator",title:"Disaster Response Simulator",category:"Interactive Storyline Simulation",description:"An interactive hurricane and disaster response learning simulation that uses scenarios and decision-making activities.",tools:["Articulate Storyline 360"],tags:["Storyline","Simulation","Scenario-Based Learning","Decision Making"],filters:["Storyline","Instructional Design"],
+P({slug:"disaster-response-simulator",title:"Disaster Response Simulator",course:"EME 607: Introduction to Instructional Games and Simulations",category:"Interactive Storyline Simulation",description:"An interactive hurricane and disaster response learning simulation that uses scenarios and decision-making activities.",tools:["Articulate Storyline 360"],tags:["Storyline","Simulation","Scenario-Based Learning","Decision Making"],filters:["Storyline","Instructional Design"],
  audience:"Community members and residents who want to practice safe decision-making before a real emergency.",
  caseStudy:{
   objectives:["Choose the safest response to an official hurricane warning","Plan an alternative evacuation route before leaving","Respond calmly to emergencies inside a shelter, such as power loss or an injured person"],
@@ -199,7 +203,7 @@ P({slug:"disaster-response-simulator",title:"Disaster Response Simulator",catego
  thumbnail:"disaster-response/card.jpg",
  spot:{img:"disaster-response/spotlight.jpg",highlights:["Branching hurricane scenario with real consequences","Four lives and instant feedback on every choice","Character selection and an expert guide"]},
  embedUrl:"disaster-response/story.html"}),
-P({slug:"science-of-nutrition",title:"The Science Behind Nutrition",category:"Rise 360",tools:["Articulate Rise 360"],tags:["Rise 360","Nutrition"],filters:["Rise 360","Instructional Design","Higher Education"],
+P({slug:"science-of-nutrition",title:"The Science Behind Nutrition",course:"EME 610: Trends and Issues in Instructional Design and Technology",category:"Rise 360",tools:["Articulate Rise 360"],tags:["Rise 360","Nutrition"],filters:["Rise 360","Instructional Design","Higher Education"],
  description:"A Rise 360 course that teaches university faculty and students how nutrition affects health and how to make informed food choices.",
  audience:"University faculty and students who want to practice proper nutrition.",
  caseStudy:{
@@ -208,7 +212,7 @@ P({slug:"science-of-nutrition",title:"The Science Behind Nutrition",category:"Ri
   experience:"Labeled graphics, accordions, tabs, flashcards, a sorting activity, embedded media, and multiple-choice, fill-in and matching knowledge checks."},
  thumbnail:"nutrition/cover.jpg",
  embedUrl:"nutrition/index.html"}),
-P({slug:"cip-theory-presentation",title:"How Memory Works: Cognitive Information Processing Theory",category:"Interactive Presentation / Learning Theory",
+P({slug:"cip-theory-presentation",title:"How Memory Works: Cognitive Information Processing Theory",course:"EME 602: Theories of Learning and Cognition for Instruction",category:"Interactive Presentation / Learning Theory",
  description:"A hand-coded, animated presentation and class activity that teaches Cognitive Information Processing theory, built for EME 602 at The University of Tampa.",
  tools:["HTML, CSS and JavaScript","Reveal.js","SVG illustration and animation"],tags:["Learning Theory","Interactive Presentation","Web Development","Animation"],filters:["Instructional Design","Higher Education"],
  audience:"Graduate students in EME 602: Theories of Learning and Cognition for Instruction.",
@@ -219,17 +223,28 @@ P({slug:"cip-theory-presentation",title:"How Memory Works: Cognitive Information
   experience:"An animated slide deck with a light and dark theme, embedded short videos, click-through question and answer cards, a score card for the activity, and speaker notes. Click inside the deck, then use the arrow keys or swipe to move through the slides."},
  thumbnail:"cip-presentation/cover.jpg",
  embedUrl:"cip-presentation/index.html"}),
-P({slug:"addie-model",title:"Introduction to the ADDIE Model",category:"Rise 360 / Microlearning",
- description:"A self-paced Rise 360 microlearning course that introduces university students to the five phases of the ADDIE instructional design model.",
+P({slug:"addie-model",title:"Introduction to the ADDIE Process",course:"EME 612: Media for Instruction",category:"Rise 360 / Microlearning",
+ description:"A self-paced Rise 360 microlearning course that introduces university students to the five phases of ADDIE, a widely used instructional design process.",
  tools:["Articulate Rise 360","Video and audio narration"],tags:["Rise 360","ADDIE","Microlearning","Video-Based Learning"],filters:["Rise 360","Instructional Design","Higher Education"],
  audience:"University students new to instructional design.",
  caseStudy:{
-  objectives:["Explain the origin and purpose of the ADDIE model","Describe what happens in each of the five phases","Explain how the phases connect and why ADDIE is not a one-way process"],
+  objectives:["Explain the origin and purpose of the ADDIE process","Describe what happens in each of the five phases","Explain how the phases connect and why ADDIE is not a one-way process"],
   decisions:["Short, focused lessons, one for each ADDIE phase","Written content paired with audio narration and brief videos to support different learning preferences","An interactive ADDIE flowchart to show how the phases connect"],
   experience:"Narrated lessons, short instructional videos, an interactive flowchart, a downloadable ADDIE process chart, multiple-choice and matching knowledge checks, and a feedback survey."},
  thumbnail:"addie/cover.jpg",
  embedUrl:"addie/index.html"})
 ];
+/* ===== EDIT HERE: design artifacts. pdf = the document file, cover = an image of its first page ===== */
+const DESIGN=[
+{title:"Designing for Motivation and Engagement",
+ course:"EME 601 · Introduction to Instructional Design · Spring 2025",
+ description:"A needs analysis and course design plan for a three-hour blended course that helps K-12 and higher education educators keep their students motivated and engaged.",
+ context:"Team project for EME 601: Introduction to Instructional Design with Dr. Minkyoung Kim (Spring 2025), The University of Tampa.",
+ conditions:"Two-person team. The analysis is based on survey data from 40 K-12 and higher education educators, and the course had to fit a three-hour blended format.",
+ scope:"Problem statement, instructional goal, learner and context analysis, recommended solution, and task analysis for a three-module course.",
+ role:"Co-author with Ryan McCalla.",
+ tags:["Needs Analysis","Learner Analysis","Task Analysis","Blended Learning"],
+ pdf:"design-docs/EME601-Design-Document.pdf",cover:"design-docs/eme601-cover.jpg"}];
 /* filter buttons above the projects: All, the tool groups, then topics. A project matches a filter when its filters list includes it. */
 const FILTERS=["All","Storyline","Rise 360","Instructional Design","Corporate Training","Higher Education"];
 /* project groups: a project appears in a group when its filters list includes the group's tool name */
@@ -303,10 +318,10 @@ if(SITE.testimonials.length){const t=$("#tm");t.hidden=false;t.innerHTML=`<div c
 
 /* projects grid + filters */
 const card=(p,g)=>{const tl=g&&g.tool?g.tool.toLowerCase():"",tags=p.tags.filter(t=>t.toLowerCase()!==tl),cat=(g&&g.tool?p.category.replace(new RegExp("^(Articulate )?"+g.tool+"( Course)?\\s*/?\\s*","i"),""):p.category)||tags[0]||p.category;return `<article class="card pc rv"><div class="th${p.thumbnail?"":" nt"}">${p.thumbnail?`<img src="${E(p.thumbnail)}" alt="" loading="lazy">`:`<span>${E((p.tools[0]||p.category||"Project").replace("Articulate ",""))}</span>`}</div>
-<div class="pcb"><p class="pcat">${E(cat||"Project")}</p><h3><a href="#project/${p.slug}">${E(p.title)}</a></h3><p class="mu">${E(p.description||"Full project details are being finalized.")}</p>${tags.filter(t=>t!==cat).length?`<p class="tags">${tags.filter(t=>t!==cat).slice(0,3).map(chip).join("")}</p>`:""}
+<div class="pcb"><p class="pcat">${E(cat||"Project")}</p>${p.course?`<p class="pcrs">${E(p.course)}</p>`:""}<h3><a href="#project/${p.slug}">${E(p.title)}</a></h3><p class="mu">${E(p.description||"Full project details are being finalized.")}</p>${tags.filter(t=>t!==cat).length?`<p class="tags">${tags.filter(t=>t!==cat).slice(0,3).map(chip).join("")}</p>`:""}
 <span class="pgo" aria-hidden="true">View project <span>&rarr;</span></span></div></article>`};
 const spot=p=>`<article class="spot rv"><a class="spi" href="#project/${p.slug}/demo" tabindex="-1" aria-hidden="true"><img src="${E(p.spot.img)}" alt="" loading="lazy"><span class="spp"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Play</span></a>
-<div class="spb"><p class="eb">Featured project</p><h3>${E(p.title)}</h3><p class="mu">${E(p.description)}</p><ul class="hl">${p.spot.highlights.map(h=>`<li>${E(h)}</li>`).join("")}</ul>
+<div class="spb"><p class="eb">Featured project</p><h3>${E(p.title)}</h3>${p.course?`<p class="pcrs">${E(p.course)}</p>`:""}<p class="mu">${E(p.description)}</p><ul class="hl">${p.spot.highlights.map(h=>`<li>${E(h)}</li>`).join("")}</ul>
 <p class="tags">${p.tags.slice(0,3).map(chip).join("")}</p><div class="acts"><a class="btn" href="#project/${p.slug}/demo">Try the simulation</a><a class="btn o" href="#project/${p.slug}">Read the case study</a></div></div></article>`;
 /* Storyline first, then Rise; this order is also used by Previous/Next on project pages */
 const GI=p=>{const i=GROUPS.findIndex(g=>p.filters.includes(g.tool));return i<0?99:i};PROJECTS.sort((a,b)=>GI(a)-GI(b));
@@ -324,6 +339,14 @@ ${sp.map(spot).join("")}${rest.length?`${rest.length>1?'<p class="swipe" aria-hi
 const n=gs.reduce((t,g)=>t+g.vis.length,0);$("#flr").textContent=F==="All"?"":`Showing ${n} ${n===1?"project":"projects"} for ${F}`;
 if(window.REVEAL)REVEAL($$("#pgroups .rv"))};
 renderProjects();
+/* design artifacts: the cover page beside the annotation, with links to the PDF */
+const dfact=(h,v)=>v?`<div class="fact"><span class="fl">${h}</span><p>${E(v)}</p></div>`:"";
+$("#dg").innerHTML=DESIGN.map(d=>`<article class="card dc rv"><a class="dcv" href="${E(d.pdf)}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="${E(d.cover)}" alt="" loading="lazy" width="680" height="880"></a>
+<div class="dcb"><p class="pcat">${E(d.course)}</p><h3>${E(d.title)}</h3><p class="mu">${E(d.description)}</p>
+<div class="facts">${dfact("Context",d.context)}${dfact("Conditions",d.conditions)}${dfact("Scope",d.scope)}${dfact("My Role",d.role)}</div>
+${d.tags&&d.tags.length?`<p class="tags">${d.tags.map(chip).join("")}</p>`:""}
+<div class="acts"><a class="btn" href="${E(d.pdf)}" target="_blank" rel="noopener">Read the design document</a><a class="btn o" href="${E(d.pdf)}" download>Download PDF</a></div></div></article>`).join("");
+if(window.REVEAL)REVEAL($$("#dg .rv"));
 $("#fl").onclick=e=>{const b=e.target.closest(".fb");if(!b)return;F=b.dataset.f;$$("#fl .fb").forEach(x=>x.setAttribute("aria-pressed",x===b));renderProjects()};
 
 /* embed viewer: iframe when embedUrl is set, placeholder otherwise */
@@ -342,7 +365,7 @@ const has=v=>Array.isArray(v)?v.length>0:!!v;
 const body=v=>Array.isArray(v)?list(v):`<p>${E(v)}</p>`;
 const fact=(h,v)=>has(v)?`<div class="fact"><span class="fl">${h}</span>${Array.isArray(v)?`<p>${E(v.join(" · "))}</p>`:`<p>${E(v)}</p>`}</div>`:"";
 const sec=(h,v)=>has(v)?`<div class="card sec"><h3>${h}</h3>${body(v)}</div>`:"";
-const facts=fact("My Role",p.role)+fact("Audience",p.audience)+fact("Tools",p.tools)+fact("Process",p.process);
+const facts=fact("Course",p.course)+fact("My Role",p.role)+fact("Audience",p.audience)+fact("Tools",p.tools)+fact("Process",p.process);
 const secs=sec("The Challenge",p.problem)+sec("Learning Objectives",c.objectives)+sec("Design Decisions",c.decisions||p.solution)+sec("Learning Experience",c.experience)+sec("Evaluation / Feedback",c.evaluation)+sec("Final Outcome",p.outcome)+sec("Lessons Learned",c.lessons);
 const shots=(c.screenshots||[]).map((s,k)=>`<img src="${E(s)}" alt="${E(p.title)} screenshot ${k+1}" style="width:100%;border:1px solid var(--bd);border-radius:12px;margin-top:12px">`).join("");
 const cs=$("#cs");if(!cs.classList.contains("on"))last=document.activeElement;
