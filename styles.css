@@ -256,7 +256,7 @@ h1,h2,.cw .csh h2{font-family:var(--serif);font-weight:600;letter-spacing:-.01em
 @media(max-width:480px){.posum{grid-template-columns:1fr 1fr;gap:12px}.posum li{padding:16px 18px}}
 
 /* Design artifacts: a document's cover page beside its annotation */
-#design{padding-bottom:48px}#design+#projects{padding-top:48px}
+
 .dlist{display:grid;gap:24px}
 .dc{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:36px;align-items:start}
 .dcv{display:block;aspect-ratio:8.5/11;background:#fff;border:1px solid var(--bd);border-radius:8px;overflow:hidden;box-shadow:0 12px 28px rgba(31,61,43,.12);transition:transform .2s}
@@ -269,3 +269,23 @@ h1,h2,.cw .csh h2{font-family:var(--serif);font-weight:600;letter-spacing:-.01em
 /* course label under a project's category */
 .pcrs{font-size:13px;line-height:1.4;color:var(--mu);margin:-2px 0 8px}
 .spb .pcrs{color:rgba(255,255,255,.72)}
+
+/* round 3: research and presentations, launch panel, quote */
+.rc .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+.vc{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:32px;align-items:start;margin-bottom:24px}
+.vw{border-radius:12px;overflow:hidden;border:1px solid var(--bd);background:#111;aspect-ratio:16/9}
+.vw video{display:block;width:100%;height:100%}
+.vb h3,.vc2 h3{font-family:var(--serif);font-size:22px;margin:6px 0 10px}
+.vk{margin:12px 0}
+.vb .mu.sm{margin-top:10px}
+.vc2{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:28px;align-items:center}
+.vc2 .th{margin:0;border-radius:10px;overflow:hidden}
+.lx{display:block;position:relative;text-decoration:none;background:#1f3d2b}
+.emb.lx{height:auto;aspect-ratio:16/9;max-height:520px;min-height:0}
+.lx img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;transition:opacity .2s}
+.lx:hover img{opacity:.4}
+.lxb{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#fff;color:var(--ac);font-weight:700;padding:14px 22px;border-radius:999px;box-shadow:0 10px 24px rgba(0,0,0,.25);white-space:nowrap}
+.xq{margin:14px 0 4px;padding:12px 16px;border-left:3px solid var(--ac2,#c9a227);background:var(--bg);border-radius:0 10px 10px 0}
+.xq p{font-style:italic;margin:0 0 6px}
+.xq cite{font-style:normal;font-size:13px;color:var(--mu)}
+@media(max-width:900px){.vc,.vc2{grid-template-columns:1fr}.rc .facts{grid-template-columns:1fr}.lxb{white-space:normal;text-align:center}}
