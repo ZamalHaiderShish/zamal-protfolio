@@ -117,12 +117,14 @@ The course list is in the script block marked EDIT HERE near the bottom; the res
 </tbody></table></div>
 
 <div id="posl"></div>
+<div id="poscert"></div>
 
 <h2 class="sub">Academic Preparation Before the Program</h2>
 <div class="prose">
 <p>My graduate study builds on two earlier programs at Limkokwing University of Creative Technology in Cyberjaya, Malaysia: a Bachelor of Science (Hons) in Software Engineering with Multimedia, completed in July 2018, and a Foundation in Information Technology, completed in August 2014. Courses there in multimedia authoring, interaction design, and web programming are the technical base for the eLearning I build now.</p>
 <p><a class="tl" href="index.html#education">See my education timeline and certificates</a></p>
 </div>
+<div id="posprev"></div>
 </div></section>
 
 <section class="sp-next"><div class="w"><div class="pn"><a class="btn o" href="goals.html"><span aria-hidden="true">&larr;</span> Previous: Goal Statement</a><a class="btn" href="index.html#experience">Next: Experience <span aria-hidden="true">&rarr;</span></a></div></div></section>
@@ -130,7 +132,8 @@ The course list is in the script block marked EDIT HERE near the bottom; the res
 <script>
 /* ===== EDIT HERE: program of study =====
    One entry per course. Leave instructor as "" to hide that line until you add the name.
-   status: "Completed" or "In progress". link/linkText are optional and point to related portfolio work. */
+   status: "Completed" or "In progress". link/linkText are optional and point to related portfolio work.
+   CERTS (certificates) and PREV (earlier programs, from my transcripts) are below the course list. */
 const UT="The University of Tampa";
 const POS=[
 {group:"Required Core Courses",sub:"24 credit hours, required of every student in the program",list:[
@@ -153,7 +156,8 @@ const POS=[
   desc:"A seminar on instructional design models and research approaches, with invited specialists from the field. This is where I began this program of study and my professional learning network.",
   link:"index.html#presentations",linkText:"Watch my presentation: Think-Aloud Observations to Improve Online Course Design"},
  {code:"EME 661",title:"Advanced Seminar in Instructional Design",cr:2,term:"Fall 2026",status:"In progress",instructor:"Dr. Suzanne Ensmann",
-  desc:"The capstone seminar. It covers advanced topics and professional skills such as ethics and networking, and it is where I am building and presenting this professional portfolio."}
+  desc:"The capstone seminar. It covers advanced topics and professional skills such as ethics and networking, and it is where I am building and presenting this professional portfolio.",
+  link:"index.html",linkText:"View the project: this professional portfolio"}
 ]},
 {group:"Electives: My Emphasis Area",sub:"12 credit hours, chosen around media, games, and emerging learning technology",list:[
  {code:"EME 612",title:"Media for Instruction",cr:4,term:"Fall 2025",status:"Completed",instructor:"Dr. Minkyoung Kim",
@@ -171,6 +175,35 @@ const POS=[
   desc:"On-the-job experience applying instructional design and technology skills to real workplace projects.",
   link:"index.html#project/retail-management-course",linkText:"View the project: Retail Management Course Redesign"}
 ]}];
+/* certificates earned during the program. img (optional) adds a "View the certificate" link */
+const CERTS=[
+ {code:"EME 601",type:"Award",title:"Certificate of Excellence",date:"April 29, 2025",by:"Dr. Minkyoung Kim",
+  desc:"For outstanding achievement in EME 601: Introduction to Instructional Design. Awarded for my team project, Designing for Motivation and Engagement, which was recognized for its quality, instructional design expertise, creativity, and teamwork.",
+  img:"certificates/eme601-certificate-of-excellence.jpg",link:"index.html#design",linkText:"View the project"},
+ {code:"EME 612",type:"Award",title:"Certificate of Excellence",date:"November 20, 2025",by:"Dr. Minkyoung Kim",
+  desc:"For outstanding achievement in EME 612: Media for Instruction. Awarded for my Storyline course, Beginner's Guide to Supply Chain Processes, which was recognized for its quality, instructional design expertise, and creativity.",
+  img:"certificates/eme612-certificate-of-excellence.jpg",link:"index.html#project/supply-chain-processes",linkText:"View the project"},
+ {code:"CITI Program",type:"Certification",title:"Human Subjects Research",dateLabel:"Valid",date:"2025 to 2028",by:"CITI Program",
+  desc:"Research ethics training on protecting human subjects, which I completed for the research study in EME 603: Inquiry and Measurement.",
+  link:"index.html#research",linkText:"View the research"}
+];
+/* earlier programs, from my official transcripts. Each course: [code, title, credits] */
+const PREV=[
+{d:"Bachelor of Science (Hons) in Software Engineering with Multimedia",s:"Limkokwing University of Creative Technology",when:"October 2015 to July 2018",cr:"123 credits",
+ note:"Credits follow the Malaysian credit system and include 12 credits of Malaysian national (MPU) courses.",
+ terms:[
+ ["October 2015",[["BIT1214","C++ Programming I",4],["BIL1112","Communication Theory & Study Skills",2],["BIE1113","Fundamental of Computer Systems",3],["BIE1123","Mathematics for Computing",3],["BIT1312","Multimedia Technology",3]]],
+ ["February 2016",[["BIT1223","C++ Programming II",4],["BIS1214","Database System",4],["MPU3173","Malaysian Studies 3",3],["BIT1323","Multimedia Authoring",4],["BIE2233","Object Oriented Analysis & Design",3],["BIE1423","Software System Architecture",3]]],
+ ["August 2016",[["BIL2222","Business Communication Skills",2],["BIE2323","Computer Graphics",3],["BIE2153","Discrete Structures",3],["BIE2243","Interaction Design",3],["BIE1243","Object Oriented Programming",4],["BIE2423","Software Requirements Engineering",3]]],
+ ["February 2017",[["MPU3422","Co-curricular",2],["MPU3143","Communication – Malay Language 2",3],["BIE2363","Concept of Modelling and Animation",4],["MPU3222","Creative & Innovative Skills",2],["BIT2244","Data Communication & Networking",4],["BIE2254","Mobile Device Programming",4],["BIE2433","Software Design",3],["MPU3342","Work Sociology and Malaysian Industry",2]]],
+ ["August 2017",[["BIE3353","Character Animation",4],["BIT3253","Data Structure & Algorithm Analysis",3],["BIT3342","Database Design & Management",3],["BIT2333","Interactive Multimedia",4],["BIE3262","Major Project I",2],["BIE3463","Software Quality",3],["BIE3284","Web Programming and Web Services",4]]],
+ ["February 2018",[["BBUSS2405","Business Planning & Idea Generation",2],["UCC2143","Global Classroom",3],["BIS3593","Legal & Ethical Issues in IT",3],["BIE3274","Major Project II",4],["BIT3516","Practical Internship",4],["BIE3443","Software Project Management",3],["BIE3453","Software Testing & Reliability",3]]]]},
+{d:"Foundation in Information Technology",s:"Limkokwing University of Creative Technology",when:"August 2013 to August 2014",cr:"51 credits",
+ terms:[
+ ["August 2013",[["FIL0113","English",3],["FBB1213","Introduction to Business",3],["FIT1314","Introduction to Information Technology",4],["FIT1214","Mathematics I",4],["FBB1113","Principles of Accounting",3]]],
+ ["December 2013",[["FIL0223","English & Study Skills",3],["FIT1323","Fundamental of Internet Technology",3],["FIT1224","Fundamental of Statistic",4],["FBB1313","Principles of Economics",3],["FIT1234","Principles of Programming Logic & Design",4]]],
+ ["April 2014",[["FIL0333","English & Critical Thinking",3],["FIT1333","Fundamental of Multimedia",3],["FIT1244","Mathematics II",4],["FBB2513","Principles of Law",3],["FIT1254","Programming Fundamental",4]]]]}
+];
 /* ===== END EDIT ===== */
 (()=>{const E=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const total=g=>g.list.reduce((t,c)=>t+c.cr,0);
@@ -181,6 +214,19 @@ document.getElementById("posl").innerHTML=POS.map(g=>`<h2 class="sub">${E(g.grou
 <dl class="posm"><div><dt>Date completed</dt><dd>${E(c.status==="Completed"?c.term:"Expected December 2026")}</dd></div><div><dt>Credits</dt><dd>${c.cr}</dd></div>${c.instructor?`<div><dt>Instructor</dt><dd>${E(c.instructor)}</dd></div>`:""}<div><dt>Institution</dt><dd>${E(UT)}</dd></div></dl>
 <p class="posd">${E(c.desc)}</p>${(c.links||(c.link?[[c.link,c.linkText]]:[])).map(([h,t])=>`<p class="posl"><a class="tl" href="${E(h)}">${E(t)}</a></p>`).join("")}
 </article>`).join("")}</div>`).join("");
+const cert=document.getElementById("poscert");
+if(cert&&CERTS.length)cert.innerHTML=`<h2 class="sub">Certificates</h2><p class="mu posg">Recognition and certification I earned during the program</p>
+<div class="posc">${CERTS.map(c=>`<article class="card posk">
+<div class="posh"><p class="poscode">${E(c.code)}</p><span class="posst">${E(c.type)}</span></div>
+<h3>${E(c.title)}</h3>
+<dl class="posm"><div><dt>${E(c.dateLabel||"Date awarded")}</dt><dd>${E(c.date)}</dd></div><div><dt>${c.type==="Award"?"Awarded by":"Issued by"}</dt><dd>${E(c.by)}</dd></div>${c.type==="Award"?`<div><dt>Institution</dt><dd>${E(UT)}</dd></div>`:""}</dl>
+<p class="posd">${E(c.desc)}</p>${c.img||c.link?`<p class="posl">${c.img?`<a class="tl" href="${E(c.img)}" target="_blank" rel="noopener">View the certificate</a>`:""}${c.img&&c.link?'<span class="pxdot" aria-hidden="true">&middot;</span>':""}${c.link?`<a class="tl" href="${E(c.link)}">${E(c.linkText)}</a>`:""}</p>`:""}
+</article>`).join("")}</div>`;
+const prev=document.getElementById("posprev");
+if(prev)prev.innerHTML=PREV.map(p=>{const n=p.terms.reduce((t,x)=>t+x[1].length,0);return `<details class="card posx">
+<summary><span class="pxh"><span class="pxt">${E(p.d)}</span><span class="pxm">${E(p.s)} · ${E(p.when)} · ${E(p.cr)}</span></span><span class="pxb"><span class="o">Show all ${n} courses</span><span class="c">Hide courses</span></span></summary>
+<div class="pxg">${p.terms.map(([t,cs])=>`<div><p class="pxs">${E(t)}<span>${cs.reduce((a,c)=>a+c[2],0)} credits</span></p><table class="pxtb"><caption class="sr-only">${E(p.d)}: courses taken in ${E(t)}, with course code and credits</caption><tbody>${cs.map(c=>`<tr><td>${E(c[0])}</td><td>${E(c[1])}</td><td>${c[2]}</td></tr>`).join("")}</tbody></table></div>`).join("")}</div>${p.note?`<p class="mu pxn">${E(p.note)}</p>`:""}
+</details>`}).join("");
 /* a link like pos.html#eme612 (from a project's course tag) scrolls to that course */
 const t=location.hash&&document.getElementById(decodeURIComponent(location.hash.slice(1)));if(t)requestAnimationFrame(()=>t.scrollIntoView())})();
 </script>
