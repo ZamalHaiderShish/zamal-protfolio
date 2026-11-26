@@ -175,12 +175,14 @@ const POS=[
 (()=>{const E=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const total=g=>g.list.reduce((t,c)=>t+c.cr,0);
 document.getElementById("posl").innerHTML=POS.map(g=>`<h2 class="sub">${E(g.group)}</h2><p class="mu posg">${E(g.sub)}</p>
-<div class="posc">${g.list.map(c=>`<article class="card posk">
+<div class="posc">${g.list.map(c=>`<article class="card posk" id="${E(c.code.toLowerCase().replace(/\s+/g,""))}">
 <div class="posh"><p class="poscode">${E(c.code)}</p><span class="posst${c.status==="Completed"?"":" ip"}">${E(c.status)}</span></div>
 <h3>${E(c.title)}</h3>
 <dl class="posm"><div><dt>Date completed</dt><dd>${E(c.status==="Completed"?c.term:"Expected December 2026")}</dd></div><div><dt>Credits</dt><dd>${c.cr}</dd></div>${c.instructor?`<div><dt>Instructor</dt><dd>${E(c.instructor)}</dd></div>`:""}<div><dt>Institution</dt><dd>${E(UT)}</dd></div></dl>
 <p class="posd">${E(c.desc)}</p>${(c.links||(c.link?[[c.link,c.linkText]]:[])).map(([h,t])=>`<p class="posl"><a class="tl" href="${E(h)}">${E(t)}</a></p>`).join("")}
-</article>`).join("")}</div>`).join("")})();
+</article>`).join("")}</div>`).join("");
+/* a link like pos.html#eme612 (from a project's course tag) scrolls to that course */
+const t=location.hash&&document.getElementById(decodeURIComponent(location.hash.slice(1)));if(t)requestAnimationFrame(()=>t.scrollIntoView())})();
 </script>
 
 <footer class="has-wm"><svg class="wm wm-footer" viewBox="0 0 100 110" fill="currentColor" aria-hidden="true" focusable="false"><use href="#wm-tumble"/></svg><div class="w fw"><div><b>Zamal Haider Shish</b><br><span class="mu">Instructional Designer &amp; eLearning Developer</span><p class="mu" style="margin-top:8px">&copy; 2026 Zamal Haider Shish. All rights reserved.</p></div>

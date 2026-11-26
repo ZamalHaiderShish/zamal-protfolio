@@ -134,7 +134,7 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 <section id="research" class="alt"><div class="w"><h2>Research and Presentations</h2><p class="lead">How I study learners with real data, and how I share what I learn with other designers.</p>
 <h3 class="sub">Research</h3>
 <article class="card dc rc rv"><a class="dcv" href="research/EME603-Usability-Test-Report.pdf" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="research/eme603-cover.jpg" alt="" loading="lazy" width="680" height="880"></a>
-<div class="dcb"><p class="pcat">EME 603 · Inquiry and Measurement · Fall 2025</p><h3>Inclusive Learning Experience Design: Centering Accessibility as a Core Principle</h3>
+<div class="dcb"><p class="pcat"><a class="ctag" href="pos.html#eme603" title="See EME 603 in my Program of Study">EME 603</a> Inquiry and Measurement · Fall 2025</p><h3>Inclusive Learning Experience Design: Centering Accessibility as a Core Principle</h3>
 <p class="mu">A team study of how accessibility features in instructional materials affect international English language learners at a university language institute, completed with Dr. Minkyoung Kim.</p>
 <div class="facts">
 <div class="fact"><span class="fl">Research focus</span><p>Do accessibility features such as closed captions, color contrast, and readable text help English language learners understand and stay engaged with instructional materials?</p></div>
@@ -149,11 +149,11 @@ If a demo stays blank, the host blocks iframes; use "Open Full Project" instead.
 <div class="acts"><a class="btn" href="research/EME603-Usability-Test-Report.pdf" target="_blank" rel="noopener">Read the usability test report</a><a class="btn o" href="research/EME603-Usability-Test-Report.pdf" download>Download PDF</a></div></div></article>
 <h3 class="sub" id="presentations">Presentations</h3>
 <article class="card vc2 rv"><a class="th" href="#project/cip-theory-presentation" tabindex="-1" aria-hidden="true"><img src="cip-presentation/cover.jpg" alt="" loading="lazy"></a>
-<div><p class="pcat">EME 602 · Theories of Learning and Cognition for Instruction · Fall 2026 · Class presentation</p><h3>How Memory Works: Cognitive Information Processing Theory</h3>
+<div><p class="pcat"><a class="ctag" href="pos.html#eme602" title="See EME 602 in my Program of Study">EME 602</a> Theories of Learning and Cognition for Instruction · Fall 2026 · Class presentation</p><h3>How Memory Works: Cognitive Information Processing Theory</h3>
 <p class="mu">An animated presentation and class activity I designed, coded, and presented to teach how information moves through memory and what that means for instruction.</p>
 <div class="acts"><a class="btn o" href="#project/cip-theory-presentation">View the presentation</a></div></div></article>
 <article class="card vc rv"><div class="vw"><video controls preload="metadata" poster="presentations/chapter15-poster.jpg" aria-label="Recorded presentation: Think-Aloud Observations to Improve Online Course Design"><source src="presentations/chapter15-think-aloud.mp4" type="video/mp4"><a href="presentations/chapter15-think-aloud.mp4">Download the presentation video</a></video></div>
-<div class="vb"><p class="pcat">EME 660 · Seminar in Instructional Design · Fall 2026 · Recorded presentation, 6 minutes</p><h3>Think-Aloud Observations to Improve Online Course Design</h3>
+<div class="vb"><p class="pcat"><a class="ctag" href="pos.html#eme660" title="See EME 660 in my Program of Study">EME 660</a> Seminar in Instructional Design · Fall 2026 · Recorded presentation, 6 minutes</p><h3>Think-Aloud Observations to Improve Online Course Design</h3>
 <p class="mu">My recorded presentation of Chapter 15 of <i>Learner and User Experience Research</i> (Gregg et al., 2020) for my EME 660 classmates. I explain what a think-aloud observation is, walk through a case in which 19 students tested Canvas courses, share the five design principles that came out of it, and show how to plan, pilot, and run a test of your own.</p>
 <p class="vk"><b>The five principles:</b> use clear, consistent names; limit outside tools; follow Canvas conventions; keep related information together; and be consistent across courses.</p>
 <p class="mu sm">I used the same method in EME 601, where a think-aloud session with instructors led my team to add a hands-on activity to our course.</p>
@@ -247,6 +247,7 @@ P({slug:"disaster-response-simulator",title:"Disaster Response Simulator",course
 P({slug:"supply-chain-processes",title:"Beginner's Guide to Supply Chain Processes",course:"EME 612: Media for Instruction",category:"Storyline Course / Workplace Onboarding",
  description:"An interactive Storyline 360 course that helps new merchandising and commercial employees in Bangladesh's ready-made garment (RMG) industry learn supply chain processes and standard procedures.",
  thumbnail:"supply-chain/cover.jpg",
+ spot:{img:"supply-chain/spotlight.jpg",cta:"Open the course",highlights:["Separate paths for the merchandising and commercial teams","Step-by-step standard operating procedures (SOPs)","Recognized with a Certificate of Excellence"]},
  tools:["Articulate Storyline 360","Review 360"],
  tags:["Storyline","Workplace Training","Onboarding","RMG Industry"],filters:["Storyline","Instructional Design","Corporate Training"],
  role:"Instructional designer and developer (individual project). The topic draws on my own years in the RMG industry.",
@@ -376,12 +377,15 @@ $("#certbox").addEventListener("click",ev=>{if(ev.target.id==="certbox"||ev.targ
 if(SITE.testimonials.length){const t=$("#tm");t.hidden=false;t.innerHTML=`<div class="w"><h2>What Collaborators Say</h2><div class="g" style="margin-top:28px">${SITE.testimonials.map(x=>`<figure class="card">${x.photo?`<img src="${E(x.photo)}" alt="${E(x.name)}" width="48" height="48">`:""}<blockquote style="margin:8px 0">${E(x.quote)}</blockquote><figcaption><b>${E(x.name)}</b><br><span class="mu sm">${E(x.role)}, ${E(x.org)}</span></figcaption></figure>`).join("")}</div></div>`}
 
 /* projects grid + filters */
+/* course tag: the course number links to that course on the Program of Study page */
+const ctag=c=>E(c).replace(/EME (\d{3})(?::\s*|\s*\u00b7\s*)?/,(m,n)=>`<a class="ctag" href="pos.html#eme${n}" title="See EME ${n} in my Program of Study">EME ${n}</a> `);
 const card=(p,g)=>{const tl=g&&g.tool?g.tool.toLowerCase():"",tags=p.tags.filter(t=>t.toLowerCase()!==tl),cat=(g&&g.tool?p.category.replace(new RegExp("^(Articulate )?"+g.tool+"( Course)?\\s*/?\\s*","i"),""):p.category)||tags[0]||p.category;return `<article class="card pc rv"><div class="th${p.thumbnail?"":" nt"}">${p.thumbnail?`<img src="${E(p.thumbnail)}" alt="" loading="lazy">`:`<span>${E((p.tools[0]||p.category||"Project").replace("Articulate ",""))}</span>`}</div>
-<div class="pcb"><p class="pcat">${E(cat||"Project")}</p>${p.course?`<p class="pcrs">${E(p.course)}</p>`:""}<h3><a href="#project/${p.slug}">${E(p.title)}</a></h3><p class="mu">${E(p.description||"Full project details are being finalized.")}</p>${tags.filter(t=>t!==cat).length?`<p class="tags">${tags.filter(t=>t!==cat).slice(0,3).map(chip).join("")}</p>`:""}
+<div class="pcb"><p class="pcat">${E(cat||"Project")}</p>${p.course?`<p class="pcrs">${ctag(p.course)}</p>`:""}<h3><a href="#project/${p.slug}">${E(p.title)}</a></h3><p class="mu">${E(p.description||"Full project details are being finalized.")}</p>${tags.filter(t=>t!==cat).length?`<p class="tags">${tags.filter(t=>t!==cat).slice(0,3).map(chip).join("")}</p>`:""}
 <span class="pgo" aria-hidden="true">View project <span>&rarr;</span></span></div></article>`};
-const spot=p=>`<article class="spot rv"><a class="spi" href="#project/${p.slug}/demo" tabindex="-1" aria-hidden="true"><img src="${E(p.spot.img)}" alt="" loading="lazy"><span class="spp"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Play</span></a>
-<div class="spb"><p class="eb">Featured project</p><h3>${E(p.title)}</h3>${p.course?`<p class="pcrs">${E(p.course)}</p>`:""}<p class="mu">${E(p.description)}</p><ul class="hl">${p.spot.highlights.map(h=>`<li>${E(h)}</li>`).join("")}</ul>
-<p class="tags">${p.tags.slice(0,3).map(chip).join("")}</p><div class="acts"><a class="btn" href="#project/${p.slug}/demo">Try the simulation</a><a class="btn o" href="#project/${p.slug}">Read the case study</a></div></div></article>`;
+const spot=p=>{const ext=!p.embedUrl&&p.externalUrl,go=ext?E(p.externalUrl):`#project/${p.slug}/demo`,nt=ext?' target="_blank" rel="noopener"':"";
+return `<article class="spot rv"><a class="spi" href="${go}"${nt} tabindex="-1" aria-hidden="true"><img src="${E(p.spot.img)}" alt="" loading="lazy"><span class="spp"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Play</span></a>
+<div class="spb"><p class="eb">Featured project</p><h3>${E(p.title)}</h3>${p.course?`<p class="pcrs">${ctag(p.course)}</p>`:""}<p class="mu">${E(p.description)}</p><ul class="hl">${p.spot.highlights.map(h=>`<li>${E(h)}</li>`).join("")}</ul>
+<p class="tags">${p.tags.slice(0,3).map(chip).join("")}</p><div class="acts"><a class="btn" href="${go}"${nt}>${E(p.spot.cta||"Try the simulation")}${ext?' <span aria-hidden="true">&#8599;</span><span class="sr-only"> (opens in a new tab)</span>':""}</a><a class="btn o" href="#project/${p.slug}">Read the case study</a></div></div></article>`};
 /* Storyline first, then Rise; this order is also used by Previous/Next on project pages */
 const GI=p=>{const i=GROUPS.findIndex(g=>p.filters.includes(g.tool));return i<0?99:i};PROJECTS.sort((a,b)=>GI(a)-GI(b));
 const OTHER=PROJECTS.filter(p=>GI(p)===99),GS=GROUPS.map(g=>({...g,list:PROJECTS.filter(p=>GI(p)===GROUPS.indexOf(g))})).filter(g=>g.list.length);
@@ -393,16 +397,16 @@ const fbtn=f=>{const g=GROUPS.find(x=>x.tool===f);return `<button class="fb" dat
 const FT=FILTERS.filter(f=>fc(f)),tools=FT.filter(f=>GROUPS.some(g=>g.tool===f)),topics=FT.filter(f=>f!=="All"&&!tools.includes(f));
 $("#fl").innerHTML=[fbtn("All"),...tools.map(fbtn),topics.length?'<span class="fsep" aria-hidden="true"></span>':"",...topics.map(fbtn)].join("");
 const renderProjects=()=>{const gs=GS.map(g=>({...g,vis:g.list.filter(inF)})).filter(g=>g.vis.length);
-$("#pgroups").innerHTML=gs.length?gs.map(g=>{const sp=[],rest=g.vis;
+$("#pgroups").innerHTML=gs.length?gs.map(g=>{const sp=g.vis.filter(p=>p.spot),rest=g.vis.filter(p=>!p.spot);
  return `<div class="pgrp" id="${g.id}"><div class="pgh"><span class="tki" style="background:${g.c}" aria-hidden="true">${g.m}</span><div><h3>${E(g.title)}</h3><p class="mu sm">${E(g.sub)} · ${cnt(g.vis.length,g.unit)}</p></div></div>
-${sp.map(spot).join("")}${rest.length?`${rest.length>1?'<p class="swipe" aria-hidden="true">Swipe to see more &rarr;</p>':""}<div class="g3" tabindex="0" aria-label="${E(g.title)}">${rest.map(p=>card(p,g)).join("")}</div>`:""}</div>`}).join(""):'<p class="mu">No projects in this category yet.</p>';
+${sp.length?`<div class="spots">${sp.map(spot).join("")}</div>`:""}${rest.length?`${rest.length>1?'<p class="swipe" aria-hidden="true">Swipe to see more &rarr;</p>':""}<div class="g3" tabindex="0" aria-label="${E(g.title)}">${rest.map(p=>card(p,g)).join("")}</div>`:""}</div>`}).join(""):'<p class="mu">No projects in this category yet.</p>';
 const n=gs.reduce((t,g)=>t+g.vis.length,0);$("#flr").textContent=F==="All"?"":`Showing ${n} ${n===1?"project":"projects"} for ${F}`;
 if(window.REVEAL)REVEAL($$("#pgroups .rv"))};
 renderProjects();
 /* design artifacts: the cover page beside the annotation, with links to the PDF */
 const dfact=(h,v)=>v?`<div class="fact"><span class="fl">${h}</span><p>${E(v)}</p></div>`:"";
 $("#dg").innerHTML=DESIGN.map(d=>`<article class="card dc rv"><a class="dcv" href="${E(d.pdf)}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="${E(d.cover)}" alt="" loading="lazy" width="680" height="880"></a>
-<div class="dcb"><p class="pcat">${E(d.course)}</p><h3>${E(d.title)}</h3><p class="mu">${E(d.description)}</p>
+<div class="dcb"><p class="pcat">${ctag(d.course)}</p><h3>${E(d.title)}</h3><p class="mu">${E(d.description)}</p>
 <div class="facts">${dfact("Context",d.context)}${dfact("Conditions",d.conditions)}${dfact("Scope",d.scope)}${dfact("My Role",d.role)}${dfact("Recognition",d.award)}</div>
 ${d.tags&&d.tags.length?`<p class="tags">${d.tags.map(chip).join("")}</p>`:""}
 <div class="acts"><a class="btn" href="${E(d.pdf)}" target="_blank" rel="noopener">Read the design document</a><a class="btn o" href="${E(d.pdf)}" download>Download PDF</a>${d.more?`<a class="btn o" href="${E(d.more.href)}">${E(d.more.text)}</a>`:""}</div></div></article>`).join("");
@@ -426,7 +430,8 @@ const has=v=>Array.isArray(v)?v.length>0:!!v;
 const body=v=>Array.isArray(v)?list(v):`<p>${E(v)}</p>`;
 const fact=(h,v)=>has(v)?`<div class="fact"><span class="fl">${h}</span>${Array.isArray(v)?`<p>${E(v.join(" · "))}</p>`:`<p>${E(v)}</p>`}</div>`:"";
 const sec=(h,v)=>has(v)?`<div class="card sec"><h3>${h}</h3>${body(v)}</div>`:"";
-const facts=fact("Course",p.course)+fact("My Role",p.role)+fact("Audience",p.audience)+fact("Tools",p.tools)+fact("Process",p.process);
+const factH=(h,v)=>v?`<div class="fact"><span class="fl">${h}</span><p>${v}</p></div>`:"";
+const facts=factH("Course",p.course?ctag(p.course):"")+fact("My Role",p.role)+fact("Audience",p.audience)+fact("Tools",p.tools)+fact("Process",p.process);
 const secs=sec("The Challenge",p.problem)+sec("Learning Objectives",c.objectives)+sec("Design Decisions",c.decisions||p.solution)+sec("Learning Experience",c.experience)+sec("Evaluation / Feedback",c.evaluation)+sec("Final Outcome",p.outcome)+sec("Lessons Learned",c.lessons);
 const shots=(c.screenshots||[]).map((s,k)=>`<img src="${E(s)}" alt="${E(p.title)} screenshot ${k+1}" style="width:100%;border:1px solid var(--bd);border-radius:12px;margin-top:12px">`).join("");
 const cs=$("#cs");if(!cs.classList.contains("on"))last=document.activeElement;

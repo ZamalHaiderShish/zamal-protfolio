@@ -306,3 +306,13 @@ h1,h2,.cw .csh h2{font-family:var(--serif);font-weight:600;letter-spacing:-.01em
 /* equal thumbnail size on every project card */
 .pc .th{overflow:hidden;min-height:0}
 .pc .th img{display:block}
+
+/* round 6: Storyline spotlights (same size, one below the other) and course tags */
+.spots{display:grid;gap:32px}
+@media(min-width:1001px){.spots{grid-auto-rows:1fr}.spots .spb{display:flex;flex-direction:column;justify-content:center}}
+.ctag{display:inline-block;position:relative;z-index:2;font:700 12px/1.25 Inter,sans-serif;letter-spacing:.02em;color:var(--ac);background:var(--soft);border:1px solid #cfdccb;border-radius:99px;padding:3px 9px;margin-right:4px;text-decoration:none;white-space:nowrap;vertical-align:1px;transition:background .15s,color .15s}
+.ctag:hover{background:var(--ac);border-color:var(--ac);color:#fff}
+.spb .ctag{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.35)}
+.spb .ctag:hover{background:var(--gold);border-color:var(--gold);color:#1f2a22}
+.posk{scroll-margin-top:96px}
+.posk:target{box-shadow:0 0 0 3px var(--gold)}
