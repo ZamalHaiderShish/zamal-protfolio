@@ -340,10 +340,12 @@ const EDU=[
 {d:"Bachelor of Science (Hons) in Software Engineering with Multimedia",s:"Limkokwing University of Creative Technology",l:"Cyberjaya, Malaysia",y:"2016 to 2018",status:"Conferred July 2018",mono:"LU",
  img:"education/limkokwing-campus.jpg",imgAlt:"Limkokwing University of Creative Technology campus",
  note:"Software engineering combined with multimedia design, the foundation for my work in learning technology.",
+ pos:"pos.html#bsc-software-engineering",posLabel:"Show all 39 courses",
  cert:"education/bachelor-certificate.jpg",f:["Software Engineering","Multimedia","Programming","Interface Design"]},
 {d:"Foundation in Information Technology",s:"Limkokwing University of Creative Technology",l:"Cyberjaya, Malaysia",y:"2013 to 2014",status:"Awarded August 2014",mono:"LU",
  img:"education/limkokwing-campus.jpg",imgAlt:"Limkokwing University of Creative Technology campus",
  note:"One-year pre-university program in information technology, completed with full credits.",
+ pos:"pos.html#foundation-it",posLabel:"Show all 15 courses",
  cert:"education/foundation-certificate.jpg"}];
 const PHIL=[["Understand the Learner","Start with the learner, their needs, environment, prior knowledge, and performance goals."],["Design with Purpose","Every activity, interaction, and piece of content should support a clear learning objective."],["Make Learning Practical","Connect instruction to realistic tasks, decisions, and workplace situations."],["Evaluate and Improve","Observe how learners interact with the experience, collect feedback, and improve the design."]];
 /* hero numbers: n = the number (counts up on screen), pre/suf = text before/after it */
@@ -370,7 +372,7 @@ $("#tk").innerHTML=TOOLKIT.map(t=>`<div class="card tk2 rv"><span class="tki" st
 $("#ed").innerHTML=EDU.map((e,i)=>`<article class="edu rv"><span class="edot" aria-hidden="true"></span><div class="card ec">
 <div class="eimg" data-mono="${E(e.mono)}"><img src="${E(e.img)}" alt="${E(e.imgAlt)}" loading="lazy" onerror="this.remove()"><span class="ey">${E(e.y)}</span></div>
 <div class="eb2"><p class="est">${E(e.status)}</p><h3>${E(e.d)}</h3><p class="org">${E(e.s)}<span class="mu"> · ${E(e.l)}</span></p>${e.note?`<p class="mu">${E(e.note)}</p>`:""}
-${e.f?`<p class="ef">${e.f.map(chip).join("")}</p>`:""}${e.pos?`<a class="btn o sm2" href="${E(e.pos)}">View program of study</a>`:""}${e.cert?`<button class="btn o sm2" data-cert="${i}" aria-label="View certificate: ${E(e.d)}">View certificate</button>`:""}</div></div></article>`).join("");
+${e.f?`<p class="ef">${e.f.map(chip).join("")}</p>`:""}${e.pos?`<a class="btn o sm2" href="${E(e.pos)}">${E(e.posLabel||"View program of study")}</a>`:""}${e.cert?`<button class="btn o sm2" data-cert="${i}" aria-label="View certificate: ${E(e.d)}">View certificate</button>`:""}</div></div></article>`).join("");
 $("#ed").onclick=ev=>{const b=ev.target.closest("[data-cert]");if(!b)return;const e=EDU[+b.dataset.cert],d=$("#certbox");
 d.querySelector("img").src=e.cert;d.querySelector("img").alt=e.d+" certificate, "+e.s;d.querySelector("h3").textContent=e.d;d.showModal()};
 $("#certbox").addEventListener("click",ev=>{if(ev.target.id==="certbox"||ev.target.closest(".cx"))$("#certbox").close()});

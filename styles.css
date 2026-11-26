@@ -338,3 +338,5 @@ h1,h2,.cw .csh h2{font-family:var(--serif);font-weight:600;letter-spacing:-.01em
 .pxtb td:last-child{width:28px;text-align:right;color:var(--mu)}
 .pxn{font-size:13px;padding:6px 24px 22px}
 @media(max-width:700px){.posx>summary{flex-direction:column;align-items:flex-start}.pxt{font-size:18px}}
+.posx{scroll-margin-top:96px}.posx:target{box-shadow:0 0 0 3px var(--gold)}
+.eb2 .sm2{margin-right:10px}
