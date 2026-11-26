@@ -289,3 +289,20 @@ h1,h2,.cw .csh h2{font-family:var(--serif);font-weight:600;letter-spacing:-.01em
 .xq p{font-style:italic;margin:0 0 6px}
 .xq cite{font-style:normal;font-size:13px;color:var(--mu)}
 @media(max-width:900px){.vc,.vc2{grid-template-columns:1fr}.rc .facts{grid-template-columns:1fr}.lxb{white-space:normal;text-align:center}}
+
+/* research and presentations spacing */
+#research .sub{margin:72px 0 24px}
+#research .lead+.sub{margin-top:40px}
+#research .card+.card{margin-top:32px}
+#research .vc{margin-bottom:0}
+#research .rc .facts{margin:20px 0 18px}
+#research .rc .mu.sm{margin:0 0 14px}
+#research .rc .tags{margin:0 0 22px}
+#research .vb .vk{margin:16px 0}
+#research .vb .mu.sm{margin-top:14px}
+#research .vc2 .acts{margin-top:18px}
+@media(max-width:900px){#research .sub{margin:56px 0 20px}#research .card+.card{margin-top:24px}}
+
+/* equal thumbnail size on every project card */
+.pc .th{overflow:hidden;min-height:0}
+.pc .th img{display:block}
