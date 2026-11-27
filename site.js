@@ -1,4 +1,4 @@
-/* Shared by index.html, bio.html and goals.html.
+/* Shared by every page: index.html, bio.html, goals.html, pos.html, experience.html and theory.html.
    1) SITE holds the links you may need to edit (email, LinkedIn, resume file). Edit it here, once, for every page.
    2) Everything below it is behavior used on every page: mobile menu, header shadow on scroll,
       active-section highlight (home page only), gentle fade-in. */
