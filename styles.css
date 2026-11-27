@@ -394,3 +394,41 @@ h1,h2,.cw .csh h2{font-family:var(--serif);font-weight:600;letter-spacing:-.01em
 .plan li::marker{font-weight:700;color:var(--gold-tx)}
 @media(max-width:700px){.sp .th-p{grid-template-columns:1fr;gap:12px;padding:22px}.th-num{width:40px;height:40px;font-size:17px}.th-one{padding:24px}}
 .th-pdf{margin-top:14px}
+
+/* =====================================================================
+   THEME: colors from my EME 602 presentation (linen, sand, cocoa, tan)
+   To go back to the forest-and-gold theme, delete everything from this
+   comment to the end of this file, and set <meta name="theme-color">
+   back to #1f3d2b in each page. A full copy of the old styles.css is
+   saved on my computer in _backup/theme-forest-gold/.
+   ===================================================================== */
+:root{--ac:#44190B;--ac-h:#2E1006;--gold:#A8805C;--gold-tx:#66401F;--ac2:#A8805C;--sand:#F7D7AB;--linen:#EFE6E0;
+ --soft:#F8E8D3;--tx:#2E1A12;--mu:#5C3D31;--bd:#E6D8CE;--bg:#EFE6E0;--page:#FAF6F2}
+/* readability: headings in cocoa, body text a deeper brown, and every text color meets WCAG AAA (7:1) on its background */
+h1,h2,h3,h4{color:var(--ac)}
+::selection{background:var(--sand)}
+.photo.miss,input,textarea{border-color:#D9C7BA}
+.th.nt{background:linear-gradient(135deg,#F8E8D3,#EAD9CC)}
+.chip,.ctag,.pxb{border-color:#EED6B8}
+.eimg{background:linear-gradient(140deg,#44190B,#7A4027)}
+#certbox::backdrop{background:rgba(46,16,6,.72)}
+.lx{background:var(--ac)}
+.dcv{box-shadow:0 12px 28px rgba(68,25,11,.14)}
+.spp{background:rgba(250,246,242,.95)}
+/* dark cards (featured projects, theory statement, skill icons): sand accents */
+.spot,.hl li,.spb .chip{color:var(--linen)}
+.spb .mu{color:#CDBBB1}
+.spb .pcrs{color:#D9CBC2}
+.spb .eb,.th-one .fl{color:var(--sand)}
+.hl li:before{background:var(--sand)}
+.spb .chip{background:rgba(247,215,171,.08);border-color:rgba(247,215,171,.3)}
+.spb .btn{background:var(--sand);border-color:var(--sand);color:var(--ac)}
+.spb .btn:hover{background:#F2C793;border-color:#F2C793}
+.spb .btn.o{background:transparent;color:var(--linen);border-color:rgba(239,230,224,.55)}
+.spb .btn.o:hover{background:rgba(239,230,224,.1)}
+.spb .ctag{color:var(--linen);border-color:rgba(247,215,171,.4)}
+.spb .ctag:hover{background:var(--sand);border-color:var(--sand);color:var(--ac)}
+.ski,.rdoc{box-shadow:inset 0 -3px 0 var(--sand)}
+/* Executive Summary tags */
+.es-t{background:var(--linen);color:var(--mu)}
+.es-t.es-cur{background:var(--sand);color:var(--ac)}
